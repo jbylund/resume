@@ -1,0 +1,69 @@
+\documentclass[letterpaper,12pt]{article}
+
+\setlength{\parindent}{0in}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{calc}
+\usepackage{xfrac}
+\usepackage{enumitem}
+\usepackage{textcomp}
+\usepackage{DejaVuSans}
+\usepackage{datetime}
+\usepackage{fontspec}
+\usepackage{hyperref}
+
+\hypersetup{%
+  colorlinks      = true, %Colours links instead of ugly boxes
+  %citecolor       = [rgb]{0.0, 0.0, 0.65}, %Colour of citations
+  %linkcolor       = [rgb]{0.0, 0.0, 0.65}, %Colour of internal links
+  urlcolor        = [rgb]{0.0, 0.0, 0.65}, %Colour for external hyperlinks
+  urlbordercolor  = [rgb]{0.0, 0.0, 0.65},
+}
+
+\makeatletter
+\Hy@AtBeginDocument{%
+  \def\@pdfborder{0 0 1}% Overrides border definition set with colorlinks=true
+  \def\@pdfborderstyle{/S/U/W 1}% Overrides border style set with colorlinks=true
+                                % Hyperlink border style will be underline of width 1pt
+}
+\makeatother
+
+\newlength{\littleskip}
+\setlength{\littleskip}{1ex}
+
+\newlength{\mybigskip}
+\setlength{\mybigskip}{2ex}
+
+\newcommand{\bigheader}{14pt}
+\newcommand{\littleheader}{12pt}
+\newcommand{\bodysize}{9.5pt}
+
+\newlength{\mysize}
+\newcommand{\myfontsize}[1]{\setlength{\mysize}{#1}%
+  \fontsize{\mysize}{1.2\mysize}\selectfont}
+
+\newenvironment{itemize*}%
+  {\begin{itemize}%
+    \setlength{\itemsep}{0.5ex}%
+    \setlength{\parskip}{0pt}}%
+  {\end{itemize}}
+
+%\newcommand{\mytilde}{\fontfamily{ptm}\selectfont\texttildelow}
+\newcommand{\mytilde}{\~{}}
+\setlength\tabcolsep{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%     Begin Document   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%\usefont{T1}{DejaVuSans-TLF}{m}{n}
+%\usefont{T1}{phv}{m}{n}
+%\usefont{T1}{tgbonum}{m}{n}
+%\usefont{T1}{cmss}{m}{n}
+%\usefont{T1}{palatino}{m}{n}
+%\usefont{T1}{ugm}{m}{n}
+\setmainfont{Ubuntu}
+\pagestyle {empty}
+\raggedright
+\input{mycontents}
+\end{document}
