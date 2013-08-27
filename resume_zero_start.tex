@@ -1,0 +1,41 @@
+\documentclass[letterpaper,12pt]{article}
+
+\setlength{\parindent}{0in}
+\newenvironment{ppl}{\fontfamily{ppl}\selectfont}{}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{calc}
+\usepackage{xfrac}
+\usepackage{enumitem}
+\usepackage{textcomp}
+
+\newlength{\littleskip}
+\setlength{\littleskip}{1ex}
+
+\newlength{\mybigskip}
+\setlength{\mybigskip}{2ex}
+
+\newcommand{\bigheader}{14pt}
+\newcommand{\littleheader}{12pt}
+\newcommand{\bodysize}{10pt}
+
+\newlength{\mysize}
+\newcommand{\myfontsize}[1]{\setlength{\mysize}{#1}%
+  \fontsize{\mysize}{1.2\mysize}\selectfont}
+
+\newenvironment{itemize*}%
+  {\begin{itemize}%
+    \setlength{\itemsep}{0.5ex}%
+    \setlength{\parskip}{0pt}}%
+  {\end{itemize}}
+
+\newcommand{\mytilde}{\fontfamily{ptm}\selectfont\texttildelow}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%     Begin Document   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\input{mycontents}
+\end{document}
+
