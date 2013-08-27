@@ -1,12 +1,12 @@
 \documentclass[letterpaper,12pt]{article}
 
 \setlength{\parindent}{0in}
-\newenvironment{ppl}{\fontfamily{ppl}\selectfont}{}
 \usepackage[margin=1.0in]{geometry}
 \usepackage{calc}
 \usepackage{xfrac}
 \usepackage{enumitem}
 \usepackage{textcomp}
+\usepackage{DejaVuSans}
 
 \newlength{\littleskip}
 \setlength{\littleskip}{1ex}
@@ -30,12 +30,14 @@
 
 \newcommand{\mytilde}{\fontfamily{ptm}\selectfont\texttildelow}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%     Begin Document   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
+\usefont{T1}{DejaVuSans-TLF}{m}{n}
+\pagestyle {empty}
+\raggedright
 \input{mycontents}
 \end{document}
 
