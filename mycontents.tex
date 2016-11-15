@@ -4,51 +4,54 @@
 
 \begin{center}
 \myfontsize{\bigheader}
-\textbf{Joseph Bylund}\\
+\textbf{Joe Bylund}\\
 \myfontsize{\bodysize}
 joseph.bylund@gmail.com\\
-70 Haven Ave, Apt 6C, New York, NY 10032\\
-347-829-5863\hspace{3ex}columbia.edu/{\mytilde}jhb2147\\
+656 West 162nd Street, Apt 2H, New York, NY 10032\\
+347-829-5863\hspace{3ex}\\
 \end{center}
 
+\hrulefill
+\vspace{\littleskip}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%     Education    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%     Moat    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \myfontsize{\bigheader}
-\textbf{Education}\\
+\textbf{Moat}
 \myfontsize{\bodysize}
-\textbf{Columbia University}, New York, NY\\
-2007 --- 2013, GPA 3.88/4.0\\
+New York, NY\\
+2013 --- Present\\
+Senior Data Scientist \& Backend Engineer\\
+
+\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
+    \item Numerous data driven API improvements which lead to 3-4x improvement in API latency as well as maximum request size.
+    \item Improvements to ORM (cakephp) and core php in order to reduce the number of queries necessary to render a page by 5x (decreasing page load time by \textasciitilde{}3x).
+    \item Standardized deployment to deploy hundreds of servers of \textasciitilde{}30 different roles to AWS.
+    \item Migrated primary non-statistical database (users, accounts, metadata) from MySQL to Postgres improving uptime \& flexability.
+    \item Migrated primary statistical database (500 million rows/day) from non-first normal form to first normal form schema improving query latency, reducing storage demands and increasing throughput.
+    \item Architechted and implemented sophisticated message routing system which is responsible for moving \textasciitilde{}40 billion events per day from our pixel servers to our real time processing servers while balancing cpu and memory constraints.
+    \item Architechted and prototyped massively parallel decentralized data lake using AWS lambda and S3 for cost effective storage and low latency and cost effective queries.
+\end{itemize}
+
+\vspace{\littleskip}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%    Columbia    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\myfontsize{\bigheader}
+\textbf{Columbia University}
+\myfontsize{\bodysize}
+New York, NY\\
+2007 --- 2013, GPA 3.9/4.0\\
 Integrated Program In Cellular, Molecular and Biomedical Studies\\
 Doctor of Philosophy - 2013 - Monte-Carlo Sampling of Protein-Ligand Interactions and Computational Improvements to Implicit Solvent Models\\
 Master of Philosophy - 2010\\
 Master of Arts - 2009\\
-\vspace{\littleskip}
-\textbf{Rice University}, Houston, TX\\
-2003 --- 2007, GPA 3.72/4.0\\
-Bachelor of Arts - Mathematics\\
-Bachelor of Science - Biology (Ecology and Evolutionary Biology)\\
-Relevant coursework: Machine Learning, Ordinary and Partial Differential Equations, Real and Complex Analysis, Combinatorics, Number Theory, Mathematical Logic, Modern Algebra, Euclidean and Non-Euclidean Geometry.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%    Experience     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{\mybigskip}
-\myfontsize{\bigheader}
-\textbf{Experience}
-\myfontsize{\bodysize}
-
-\textbf{Moat}, New York, NY\\
-2013 --- Present\\
-Data Scientist\\
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
-    \item ?
-\end{itemize}
-\vspace{\mybigskip}
-
-\textbf{Columbia University}, New York, NY\\
-2007 --- 2013\\
-Graduate Student Researcher\\
 \begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
     \item Lead developer and maintainer ({\mytilde}80\% of source commits) of Protein Local Optimization Program (PLOP) project, a molecular mechanics library developed at Columbia University, University of California at San Francisco, and Schr\"{o}dinger.
     \item Designed and implemented the computational mutation scanning module of PLOP.
@@ -58,10 +61,34 @@ Graduate Student Researcher\\
     \item Designed and implemented a Perl based automated regression testing framework, which accelerated development while minimizing bugs and regressions.
     \item Created a project wiki, combining scattered documentation and completing missing documentation.
 \end{itemize}
-\vspace{\mybigskip}
+\vspace{\littleskip}
 
-\textbf{Shotwell Project, Yorba Foundation}\\
-2012 --- Present\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%    Rice    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\myfontsize{\bigheader}
+\textbf{Rice University}
+\myfontsize{\bodysize}
+Houston, TX\\
+2003 --- 2007, GPA 3.7/4.0\\
+Bachelor of Arts - Mathematics\\
+Bachelor of Science - Biology (Ecology and Evolutionary Biology)\\
+Relevant coursework: Machine Learning, Ordinary and Partial Differential Equations, Real and Complex Analysis, Combinatorics, Number Theory, Mathematical Logic, Modern Algebra, Euclidean and Non-Euclidean Geometry.
+\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
+    \item Designed and implemented two methods of combining information from multiple crystal structures into a single "composite motif". These combined motifs increased sensitivity and specificity of motif matching algorithms.
+    \item Completed senior thesis project identifying homologous pseudogenes in human and chimpanzee, and determining differential mutation rates.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%    Yorba      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\myfontsize{\bigheader}
+\textbf{Shotwell Project}
+\myfontsize{\bodysize}
+Yorba Foundation\\
+2012 --- 2013\\
 Community Contributor\\
 \begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
     \item Contributed a number of new features and bug fixes to the Shotwell photo organizer program.
@@ -71,21 +98,6 @@ Community Contributor\\
     \item Fixed a number of UI experiences such as adding icons to buttons and windows, and correcting misleading text.
 \end{itemize}
 
-\textbf{Rice University}\\
-2006 --- 2007\\
-Undergraduate Researcher, Department of Computer Science\\ 
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
-    \item Designed and implemented two methods of combining information from multiple crystal structures into a single "composite motif". These combined motifs increased sensitivity and specificity of motif matching algorithms.
-    \item Completed senior thesis project identifying homologous pseudogenes in human and chimpanzee, and determining differential mutation rates.
-\end{itemize}
-
-\vspace{\mybigskip}
-\textbf{MITRE}\\
-2005 --- 2006\\
-Intern\\
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
-    \item Created a PHP/mySQL web application to dynamically generate a map representing operational status of ADS-B (Automatic dependent surveillance-broadcast, used for flight navigation) ground stations.
-\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Other          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -95,11 +107,9 @@ Intern\\
 \textbf{Other}\\
 \myfontsize{\bodysize}
 \begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
-    \item In the top ten of over 4000 developers on CodeEval, a programming challenge website.\\
-    \item Proficient in FORTRAN, Python, C++, Perl, and MATLAB, with some experience in other languages.\\
-    \item Experience with multiple version control systems, including CVS, and git.\\
-    \item Volunteer at the National Aquarium in Washington, DC, summer 2007.\\
-    \item Columbia Graduate Student Organization social chair, 2010.
+    \item Extensive experience with AWS services and AWS api (EC2, dynamodb, kinesis, RDS...)
+    \item Python, C++, shell (and previously FORTRAN, vala)
+    \item Postgresql, mysql, Vertica, redis, git
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,18 +121,10 @@ Intern\\
 \textbf{Publications}\\
 \myfontsize{\bodysize}
 \vspace{1ex}
-Miller, Edward Blake, Colleen Sara Murrett, Kai Zhu, Suwen Zhao, Dahlia A. Goldfeld, Joseph Bylund, and Richard A. Friesner. “Prediction of Long Loops with Embedded Secondary Structure using the Protein Local Optimization Program.” \textit{Journal of Chemical Theory and Computation}. (2013)\\
+Miller, Edward, Colleen Murrett, Kai Zhu, Suwen Zhao, Dahlia Goldfeld, Joseph Bylund, and Richard Friesner. ``Prediction of Long Loops with Embedded Secondary Structure using the Protein Local Optimization Program.'' \textit{Journal of Chemical Theory and Computation}. (2013)\\
 \vspace{1ex}
-Bylund, Joseph, Richard Friesner. “Monte-Carlo methods in sampling of protein-ligand binding conformations.” \textit{American Chemical Society National Meeting Poster Presentation}. (2012)\\
+Bylund, Joseph, Richard Friesner. ``Monte-Carlo methods in sampling of protein-ligand binding conformations.'' \textit{American Chemical Society National Meeting Poster Presentation}. (2012)\\
 \vspace{1ex}
-Li, Jianing, Severin T. Schneebeli, Joseph Bylund, Ramy Farid, and Richard A. Friesner. “IDSite: An accurate approach to predict P450-mediated drug metabolism.” \textit{Journal of Chemical Theory and Computation} 7, no. 11 (2011): 3829-3845.\\
+Li, Jianing, Severin Schneebeli, Joseph Bylund, Ramy Farid, and Richard Friesner. ``IDSite: An accurate approach to predict P450-mediated drug metabolism.'' \textit{Journal of Chemical Theory and Computation} 7, no. 11 (2011): 3829-3845.\\
 \vspace{1ex}
-Chen, Brian Y., Drew H. Bryant, Amanda E. Cruess, Joseph H. Bylund, Viacheslav Y. Fofanov, Marek Kimmel, Olivier Lichtarge, and Lydia E. Kavraki. “Composite motifs integrating multiple protein structures increase sensitivity for function prediction.” In \textit{Comput Syst Bioinformatics Conf}, vol. 6, pp. 343-55. 2007.\\
-
-%\nocite{*}
-%\begingroup
-%\bibliographystyle{naturemag}
-%\renewcommand{\section}[2]{}%
-%\setlength{\leftmargin}{0pt}
-%\bibliography{resume}
-%\endgroup
+Chen, Brian, Drew Bryant, Amanda Cruess, Joseph Bylund, Viacheslav Fofanov, Marek Kimmel, Olivier Lichtarge, and Lydia Kavraki. ``Composite motifs integrating multiple protein structures increase sensitivity for function prediction.'' In \textit{Comput Syst Bioinformatics Conf}, vol. 6, pp. 343-55. 2007.\\
