@@ -2,7 +2,7 @@ BASENAME := joseph_bylund
 #DATE := $(shell date +%s)
 OUTPUTNAME := $(BASENAME).$(DATE).pdf
 OUTPUTNAME := $(BASENAME).pdf
-TEXCOMMAND := pdflatex
+TEXCOMMAND := xelatex
 BIBCOMMAND := bibtex
 
 view : $(OUTPUTNAME)
@@ -17,9 +17,9 @@ $(OUTPUTNAME) : mycontents.tex resume_zero_start.tex makefile resume.bib DejaVuS
 	$(TEXCOMMAND) -jobname $(BASENAME) resume_zero_start.tex
 	$(TEXCOMMAND) -jobname $(BASENAME) resume_zero_start.tex
 	/bin/rm -rf *.log *.aux *.bbl *.blg *~
-	perl -pi -e "s/.*?ModDate.*/\/ModDate (D:20130418152511-04'00')/" $(BASENAME).pdf
-	perl -pi -e "s/.*?CreationDate.*/\/CreationDate (D:20130418152541-04'00')/" $(BASENAME).pdf
-	perl -pi -e "s/.*?\/ID.*/\/ID [<0535B734E397B655F1D0DD37FD8A8CF9> <0535B734E397B655F1D0DD37FD8A8CF9>]/" $(BASENAME).pdf
+#	perl -pi -e "s/.*?ModDate.*/\/ModDate (D:20130418152511-04'00')/" $(BASENAME).pdf
+#	perl -pi -e "s/.*?CreationDate.*/\/CreationDate (D:20130418152541-04'00')/" $(BASENAME).pdf
+#	perl -pi -e "s/.*?\/ID.*/\/ID [<0535B734E397B655F1D0DD37FD8A8CF9> <0535B734E397B655F1D0DD37FD8A8CF9>]/" $(BASENAME).pdf
 #	cp -f $(BASENAME).pdf $(OUTPUTNAME)
 	fdupes . -q -d -N
 

@@ -8,6 +8,7 @@
 \usepackage{textcomp}
 \usepackage{DejaVuSans}
 \usepackage{datetime}
+\usepackage{fontspec}
 
 \newlength{\littleskip}
 \setlength{\littleskip}{1ex}
@@ -29,19 +30,22 @@
     \setlength{\parskip}{0pt}}%
   {\end{itemize}}
 
-\newcommand{\mytilde}{\fontfamily{ptm}\selectfont\texttildelow}
+%\newcommand{\mytilde}{\fontfamily{ptm}\selectfont\texttildelow}
+\newcommand{\mytilde}{\~{}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%     Begin Document   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-\usefont{T1}{DejaVuSans-TLF}{m}{n}
-\usefont{T1}{phv}{m}{n}
-\usefont{T1}{tgbonum}{m}{n}
-\usefont{T1}{cmss}{m}{n}
-\usefont{T1}{palatino}{m}{n}
-\usefont{T1}{ugm}{m}{n}
+%\usefont{T1}{DejaVuSans-TLF}{m}{n}
+%\usefont{T1}{phv}{m}{n}
+%\usefont{T1}{tgbonum}{m}{n}
+%\usefont{T1}{cmss}{m}{n}
+%\usefont{T1}{palatino}{m}{n}
+%\usefont{T1}{ugm}{m}{n}
+
+\setmainfont{Ubuntu}
 
 \pagestyle {empty}
 \raggedright
