@@ -5,6 +5,8 @@ OUTPUTNAME := $(BASENAME).pdf
 TEXCOMMAND := xelatex
 BIBCOMMAND := bibtex
 
+all: /var/www/html/joseph_bylund.pdf
+
 view : $(OUTPUTNAME)
 	@timeout 30 evince $(shell ls -t *.pdf|head -n 1) || true
 
@@ -23,7 +25,12 @@ $(OUTPUTNAME) : mycontents.tex resume_zero_start.tex makefile resume.bib DejaVuS
 #	cp -f $(BASENAME).pdf $(OUTPUTNAME)
 	fdupes . -q -d -N
 
+/var/www/html/joseph_bylund.pdf: $(OUTPUTNAME)
+	cp $(OUTPUTNAME) /var/www/html/joseph_bylund.pdf
+
 clean :
 	@/bin/rm -f $(OUTPUTNAME)
 
 .PHONY : clean view
+
+
