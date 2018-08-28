@@ -14,6 +14,12 @@ joseph.bylund@gmail.com\\
 \hrulefill
 \vspace{\littleskip}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%   Skills    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%     Moat    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -24,17 +30,17 @@ joseph.bylund@gmail.com\\
 \myfontsize{\bodysize}
 New York, NY\\
 2013 --- Present\\
-Senior Data Scientist \& Backend Engineer\\
+Senior Data Scientist \& Back-end Engineer\\
 
 \begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
-    \item Designed and implemented nightly ETL reducing cost by an order of magnitude, increasing reliability and reducing processing time from {\mytilde}10 hours to {\mytilde}1 hour, making data available to clients far earlier in the day.
-    \item Numerous data driven API improvements which lead to 3-4x improvement in API latency as well as maximum request size.
-    \item Contributed improvements to ORM (cakephp) and core php in order to reduce the number of queries necessary to render a page by 5x (decreasing page load time by {\mytilde}3x).
-    \item Standardized deployment framework used to deploy thousands of servers of {\mytilde}30 different roles to AWS.
-    \item Migrated primary non-statistical database (users, accounts, metadata) from MySQL to Postgres improving uptime \& flexibility.
+    \item Designed and implemented distributed, fault tolerant ETL reducing cost by an order of magnitude, increasing reliability and reducing processing time from {\mytilde}10 hours to {\mytilde}1 hour, making data available to clients far earlier in the day (using python, SQS, Redis, PostgreSQL).
+    \item Numerous data driven API improvements which lead to 3-4x improvement in API latency as well as maximum request size (PHP, CakePHP).
+    \item Contributed improvements to ORM (CakePHP) and core PHP in order to reduce the number of queries necessary to render a page by 5x (decreasing page load time by {\mytilde}3x) (CakePHP, c).
+    \item Standardized deployment framework used to deploy thousands of servers of {\mytilde}30 different roles to AWS (AWS, EC2, boto3).
+    \item Migrated primary non-statistical database (users, accounts, metadata) from MySQL to PostgreSQL improving uptime \& flexibility (MySQL, PostgreSQL, foreign data wrappers).
     \item Migrated primary statistical database (500 million rows/day) from non-first normal form to first normal form schema improving query latency, reducing storage demands and increasing throughput.
-    \item Architechted and implemented sophisticated message routing system which is responsible for moving {\mytilde}40 billion events per day from our pixel servers to our real time processing servers while balancing cpu and memory constraints.
-    \item Architechted and prototyped massively parallel decentralized data lake using AWS lambda and S3 for cost effective storage and low latency and cost effective queries.
+    \item Architected and implemented sophisticated message routing system which is responsible for moving {\mytilde}40 billion events per day from our pixel servers to our real time processing servers while balancing CPU and memory constraints (c++).
+    \item Architected and prototyped massively parallel decentralized data lake using AWS lambda and S3 for cost effective storage and low latency and cost effective queries (AWS lambda, python, PostgreSQL).
 \end{itemize}
 
 \vspace{\littleskip}
@@ -54,7 +60,7 @@ Master of Philosophy - 2010\\
 Master of Arts - 2009\\
 
 \begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
-    \item Lead developer and maintainer ({\mytilde}80\% of source commits) of Protein Local Optimization Program (PLOP) project, a molecular mechanics library developed at Columbia University, University of California at San Francisco, and Schr\"{o}dinger.
+    \item Lead developer and maintainer ({\mytilde}80\% of source commits) of Protein Local Optimization Program (PLOP) project, a molecular mechanics library developed at Columbia University, University of California at San Francisco, and Schr\"{o}dinger (fortran).
     \item Designed and implemented the computational mutation scanning module of PLOP.
     \item Rehabilitated project from non-compiling state on arrival.
     \item Redesigned build system to automatically determine dependencies and take advantage of parallel compilation, reducing build time from {\mytilde}30 minutes to {\mytilde}3 minutes and greatly accelerating development.
@@ -62,13 +68,15 @@ Master of Arts - 2009\\
     \item Designed and implemented a Perl based automated regression testing framework, which accelerated development while minimizing bugs and regressions.
     \item Created a project wiki, combining scattered documentation and completing missing documentation.
 \end{itemize}
+
 \vspace{\littleskip}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Rice    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+%\clearpage
+
 \myfontsize{\bigheader}
 \textbf{Rice University}
 \myfontsize{\bodysize}
@@ -116,6 +124,8 @@ Community Contributor\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Publications    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\iffalse
 \vspace{\mybigskip}
 \vspace{\mybigskip}
 \myfontsize{\littleheader}
@@ -129,5 +139,7 @@ Bylund, Joseph, Richard Friesner. ``Monte-Carlo methods in sampling of protein-l
 Li, Jianing, Severin Schneebeli, Joseph Bylund, Ramy Farid, and Richard Friesner. ``IDSite: An accurate approach to predict P450-mediated drug metabolism.'' \textit{Journal of Chemical Theory and Computation} 7, no. 11 (2011): 3829-3845.\\
 \vspace{1ex}
 Chen, Brian, Drew Bryant, Amanda Cruess, Joseph Bylund, Viacheslav Fofanov, Marek Kimmel, Olivier Lichtarge, and Lydia Kavraki. ``Composite motifs integrating multiple protein structures increase sensitivity for function prediction.'' In \textit{Comput Syst Bioinformatics Conf}, vol. 6, pp. 343-55. 2007.\\
+\fi
+
 
 \center{Last updated \monthname, \the\year}
