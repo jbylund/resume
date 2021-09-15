@@ -5,15 +5,29 @@ OUTPUTNAME := $(BASENAME).pdf
 TEXCOMMAND := xelatex
 BIBCOMMAND := bibtex
 
-all: /var/www/html/joseph_bylund.pdf
+all: joseph_bylund.pdf
 
 view : $(OUTPUTNAME)
 	@timeout 30 evince $(shell ls -t *.pdf|head -n 1) || true
 
 DejaVuSans.sty:
-	wget http://ctan.mackichan.com/fonts/dejavu/tex/DejaVuSans.sty
+	wget http://mirrors.ctan.org/fonts/dejavu/tex/DejaVuSans.sty
 
-$(OUTPUTNAME) : mycontents.tex resume_zero_start.tex makefile resume.bib DejaVuSans.sty /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+
+apt-get-update:
+	sudo -H apt-get update
+
+/usr/share/texlive/texmf-dist/tex/latex/base/article.cls: apt-get-update
+	ls /usr/share/texlive/texmf-dist/tex/latex/base/article.cls || sudo -H apt-get install -y texlive-latex-base || true
+	ls /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+
+xelatex: apt-get-update
+	xelatex --version || sudo -H apt-get install -y texlive-xetex
+
+fdupes: apt-get-update
+	fdupes --version || apt-get install fdupes
+
+$(OUTPUTNAME) : $(TEXCOMMAND) fdupes mycontents.tex resume_zero_start.tex makefile resume.bib DejaVuSans.sty /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 	$(TEXCOMMAND) -jobname $(BASENAME) resume_zero_start.tex
 	-$(BIBCOMMAND) $(BASENAME)
 	$(TEXCOMMAND) -jobname $(BASENAME) resume_zero_start.tex
@@ -25,8 +39,8 @@ $(OUTPUTNAME) : mycontents.tex resume_zero_start.tex makefile resume.bib DejaVuS
 #	cp -f $(BASENAME).pdf $(OUTPUTNAME)
 	fdupes . -q -d -N
 
-/var/www/html/joseph_bylund.pdf: $(OUTPUTNAME)
-	cp $(OUTPUTNAME) /var/www/html/joseph_bylund.pdf
+#/var/www/html/joseph_bylund.pdf: $(OUTPUTNAME)
+#	cp $(OUTPUTNAME) /var/www/html/joseph_bylund.pdf
 
 clean :
 	@/bin/rm -f $(OUTPUTNAME)
