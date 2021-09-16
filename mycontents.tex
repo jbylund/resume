@@ -7,7 +7,7 @@
 \textbf{Joe Bylund}\\
 \myfontsize{\bodysize}
 joseph.bylund@gmail.com\\
-791 Tremont Street, E509, Boston, MA 02118\\
+135 Dexter Ave, Watertown, MA 02472\\
 347-829-5863\hspace{3ex}\\
 \end{center}
 
@@ -20,7 +20,23 @@ joseph.bylund@gmail.com\\
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%   Kensho    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\myfontsize{\bigheader}
+\textbf{Kensho}
+\myfontsize{\bodysize}
+Cambridge, MA\\
+2018 --- Present\\
+Data Engineer\\
+
+\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
+    \item Something about graph database and write ahead log, orientdb
+    \item Something about ci improvements
+    \item Something about data processing pipeline
+    \item Something about record linking
+\end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%     Moat    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -29,7 +45,7 @@ joseph.bylund@gmail.com\\
 \textbf{Moat}
 \myfontsize{\bodysize}
 New York, NY\\
-2013 --- Present\\
+2013 --- 2018\\
 Senior Data Scientist \& Back-end Engineer\\
 
 \begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
@@ -91,16 +107,38 @@ Relevant coursework: Machine Learning, Ordinary and Partial Differential Equatio
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%    Yorba      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%    Open Source   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \myfontsize{\bigheader}
-\textbf{Shotwell Project}
-\myfontsize{\bodysize}
-Yorba Foundation\\
-2012 --- 2013\\
-Community Contributor\\
+\textbf{Selected Open Source Contributions}
+\myfontsize{\bodysize}\\
+
+% todo, how should this be formatted
+% fix type hints for cachetools https://github.com/python/typeshed/pull/5440
+
+\vspace{\littleskip}
+\vspace{\littleskip}
+
+\href{https://github.com/pypa/pip}{Python Package Installer - Pip}\\
 \begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
-    \item Contributed a number of new features and bug fixes to the Shotwell photo organizer program.
+    \item Up to 10x improved performance of package version resolution (\href{https://github.com/pypa/pip/pull/9748}{pull request}).
+    \item 2x performance increase in comparison of tag objects (\href{https://github.com/pypa/packaging/pull/417}{pull request}).
+\end{itemize}
+These changes decreased the time spent on pip steps as part of ci process (at Kensho).
+
+\vspace{\littleskip}
+\vspace{\littleskip}
+
+\href{https://github.com/php/php-src}{PHP}\\
+Avoided roundtrip to database in order to get column type for most common datatypes (\href{https://github.com/php/php-src/pull/1534}{pull request}).
+This decreased the number of queries run as well as page load time by more than an order of magnitude in some cases (at Moat).
+
+\vspace{\littleskip}
+\vspace{\littleskip}
+
+\href{https://gitlab.gnome.org/GNOME/shotwell}{Gnome Shotwell Photo Manager}\\
+\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
+    \item Decreased the number of times raw images were decoded during import process, improving photo import performance.
     \item Recursively included contained files in the folder browser.
     \item Added support of panoramic images as event thumbnails.
     \item Updated searches to search comments and robustly treat accented characters.
@@ -113,12 +151,12 @@ Community Contributor\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{\mybigskip}
 \myfontsize{\littleheader}
-\textbf{Other}\\
+\textbf{Technologies \& Skills}\\
 \myfontsize{\bodysize}
 \begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
     \item Extensive experience with AWS services and AWS api (EC2, dynamodb, kinesis, RDS...)
     \item Python, C++, shell (and previously FORTRAN, vala)
-    \item Postgresql, mysql, Vertica, redis, git
+    \item PostgreSQL, mysql, Vertica, redis, git
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
