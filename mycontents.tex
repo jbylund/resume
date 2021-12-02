@@ -59,11 +59,13 @@ Senior Data Scientist \& Back-end Engineer\\
     \item Architected and prototyped massively parallel decentralized data lake using AWS lambda and S3 for cost effective storage and low latency and cost effective queries (AWS lambda, python, PostgreSQL).
 \end{itemize}
 
-\vspace{\littleskip}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Columbia    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrulefill
+\vspace{\littleskip}
 
 \myfontsize{\bigheader}
 \textbf{Columbia University}
@@ -109,8 +111,11 @@ Relevant coursework: Machine Learning, Ordinary and Partial Differential Equatio
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Open Source   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hrulefill
+\vspace{\littleskip}
+
 \myfontsize{\bigheader}
-\textbf{Selected Open Source Contributions}
+\textbf{Open Source Contributions}
 \myfontsize{\bodysize}\\
 
 % todo, how should this be formatted
@@ -119,7 +124,10 @@ Relevant coursework: Machine Learning, Ordinary and Partial Differential Equatio
 \vspace{\littleskip}
 \vspace{\littleskip}
 
+\myfontsize{\littleheader}
 \href{https://github.com/pypa/pip}{Python Package Installer - Pip}\\
+\myfontsize{\bodysize}
+
 \begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
     \item Up to 10x improved performance of package version resolution (\href{https://github.com/pypa/pip/pull/9748}{pull request}).
     \item 2x performance increase in comparison of tag objects (\href{https://github.com/pypa/packaging/pull/417}{pull request}).
@@ -129,14 +137,18 @@ These changes decreased the time spent on pip steps as part of ci process (at Ke
 \vspace{\littleskip}
 \vspace{\littleskip}
 
+\myfontsize{\littleheader}
 \href{https://github.com/php/php-src}{PHP}\\
+\myfontsize{\bodysize}
 Avoided roundtrip to database in order to get column type for most common datatypes (\href{https://github.com/php/php-src/pull/1534}{pull request}).
 This decreased the number of queries run as well as page load time by more than an order of magnitude in some cases (at Moat).
 
 \vspace{\littleskip}
 \vspace{\littleskip}
 
+\myfontsize{\littleheader}
 \href{https://gitlab.gnome.org/GNOME/shotwell}{Gnome Shotwell Photo Manager}\\
+\myfontsize{\bodysize}
 \begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
     \item Decreased the number of times raw images were decoded during import process, improving photo import performance.
     \item Recursively included contained files in the folder browser.
@@ -156,7 +168,7 @@ This decreased the number of queries run as well as page load time by more than 
 \begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
     \item Extensive experience with AWS services and AWS api (EC2, dynamodb, kinesis, RDS...)
     \item Python, C++, shell (and previously FORTRAN, vala)
-    \item PostgreSQL, mysql, Vertica, redis, git
+    \item PostgreSQL, kubernetes, mysql, Vertica, redis, git
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -164,20 +176,7 @@ This decreased the number of queries run as well as page load time by more than 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \iffalse
-\vspace{\mybigskip}
-\vspace{\mybigskip}
-\myfontsize{\littleheader}
-\textbf{Publications}\\
-\myfontsize{\bodysize}
-\vspace{1ex}
-Miller, Edward, Colleen Murrett, Kai Zhu, Suwen Zhao, Dahlia Goldfeld, Joseph Bylund, and Richard Friesner. ``Prediction of Long Loops with Embedded Secondary Structure using the Protein Local Optimization Program.'' \textit{Journal of Chemical Theory and Computation}. (2013)\\
-\vspace{1ex}
-Bylund, Joseph, Richard Friesner. ``Monte-Carlo methods in sampling of protein-ligand binding conformations.'' \textit{American Chemical Society National Meeting Poster Presentation}. (2012)\\
-\vspace{1ex}
-Li, Jianing, Severin Schneebeli, Joseph Bylund, Ramy Farid, and Richard Friesner. ``IDSite: An accurate approach to predict P450-mediated drug metabolism.'' \textit{Journal of Chemical Theory and Computation} 7, no. 11 (2011): 3829-3845.\\
-\vspace{1ex}
-Chen, Brian, Drew Bryant, Amanda Cruess, Joseph Bylund, Viacheslav Fofanov, Marek Kimmel, Olivier Lichtarge, and Lydia Kavraki. ``Composite motifs integrating multiple protein structures increase sensitivity for function prediction.'' In \textit{Comput Syst Bioinformatics Conf}, vol. 6, pp. 343-55. 2007.\\
+\input{publications}
 \fi
-
 
 \center{Last updated \monthname, \the\year}
