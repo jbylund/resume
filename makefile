@@ -2,9 +2,9 @@ BASENAME := joseph_bylund
 #DATE := $(shell date +%s)
 OUTPUTNAME := $(BASENAME).$(DATE).pdf
 OUTPUTNAME := $(BASENAME).pdf
-TEXCOMMAND := /bin/xelatex
-BIBCOMMAND := /bin/bibtex
-FDUPES := /bin/fdupes
+TEXCOMMAND := $(shell type -a xelatex | xargs -n1 echo | grep '/' | head -n 1)
+BIBCOMMAND := $(shell type -a bibtex | xargs -n1 echo | grep '/' | head -n 1)
+FDUPES := $(shell type -a fdupes | xargs -n1 echo | grep '/' | head -n 1)
 
 all: joseph_bylund.pdf
 
@@ -19,17 +19,17 @@ DejaVuSans.sty:
 	ls /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 
 # map pathname to fullname... kind of gross...
-/bin/xelatex:
+$(TEXCOMMAND):
 	xelatex --version || sudo -H apt-get install -y texlive-xetex
 
-/bin/fdupes:
+$(FDUPES):
 	fdupes --version || apt-get install fdupes
 
 $(OUTPUTNAME) : $(TEXCOMMAND) $(FDUPES) mycontents.tex resume_zero_start.tex makefile resume.bib DejaVuSans.sty /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-	$(TEXCOMMAND) -jobname $(BASENAME) resume_zero_start.tex > /dev/null
-	-$(BIBCOMMAND) $(BASENAME) > /dev/null
-	$(TEXCOMMAND) -jobname $(BASENAME) resume_zero_start.tex > /dev/null
-	$(TEXCOMMAND) -jobname $(BASENAME) resume_zero_start.tex > /dev/null
+	true | $(TEXCOMMAND) -jobname $(BASENAME) resume_zero_start.tex
+	$(BIBCOMMAND) $(BASENAME) || true
+	true | $(TEXCOMMAND) -jobname $(BASENAME) resume_zero_start.tex
+	$(TEXCOMMAND) -jobname $(BASENAME) resume_zero_start.tex
 	/bin/rm -rf *.log *.aux *.bbl *.blg joseph_bylund.out
 #	perl -pi -e "s/.*?ModDate.*/\/ModDate (D:20130418152511-04'00')/" $(BASENAME).pdf
 #	perl -pi -e "s/.*?CreationDate.*/\/CreationDate (D:20130418152541-04'00')/" $(BASENAME).pdf

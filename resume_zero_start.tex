@@ -1,7 +1,7 @@
 \documentclass[letterpaper,12pt]{article}
 
 \setlength{\parindent}{0in}
-\usepackage[margin=1.0in]{geometry}
+\usepackage[margin=0.9in]{geometry}
 \usepackage{calc}
 \usepackage{xfrac}
 \usepackage{enumitem}
@@ -11,12 +11,21 @@
 \usepackage{fontspec}
 \usepackage{hyperref}
 
-\hypersetup{
-  colorlinks   = true, %Colours links instead of ugly boxes
-  urlcolor     = blue, %Colour for external hyperlinks
-  linkcolor    = blue, %Colour of internal links
-  citecolor   = red %Colour of citations
+\hypersetup{%
+  colorlinks      = true, %Colours links instead of ugly boxes
+  %citecolor       = [rgb]{0.0, 0.0, 0.65}, %Colour of citations
+  %linkcolor       = [rgb]{0.0, 0.0, 0.65}, %Colour of internal links
+  urlcolor        = [rgb]{0.0, 0.0, 0.65}, %Colour for external hyperlinks
+  urlbordercolor  = [rgb]{0.0, 0.0, 0.65},
 }
+
+\makeatletter
+\Hy@AtBeginDocument{%
+  \def\@pdfborder{0 0 1}% Overrides border definition set with colorlinks=true
+  \def\@pdfborderstyle{/S/U/W 1}% Overrides border style set with colorlinks=true
+                                % Hyperlink border style will be underline of width 1pt
+}
+\makeatother
 
 \newlength{\littleskip}
 \setlength{\littleskip}{1ex}
@@ -40,6 +49,7 @@
 
 %\newcommand{\mytilde}{\fontfamily{ptm}\selectfont\texttildelow}
 \newcommand{\mytilde}{\~{}}
+\setlength\tabcolsep{0pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%     Begin Document   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -52,11 +62,8 @@
 %\usefont{T1}{cmss}{m}{n}
 %\usefont{T1}{palatino}{m}{n}
 %\usefont{T1}{ugm}{m}{n}
-
 \setmainfont{Ubuntu}
-
 \pagestyle {empty}
 \raggedright
 \input{mycontents}
 \end{document}
-

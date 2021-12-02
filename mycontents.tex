@@ -2,14 +2,21 @@
 %%%%%%%     Header       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\ifthenelse{1<1}{
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{\Large Joe Bylund} & \href{mailto:joseph.bylund@gmail.com}{joseph.bylund@gmail.com}\\
+  347-829-5863\\
+\end{tabular*}
+}{
 \begin{center}
 \myfontsize{\bigheader}
 \textbf{Joe Bylund}\\
 \myfontsize{\bodysize}
-joseph.bylund@gmail.com\\
-135 Dexter Ave, Watertown, MA 02472\\
+\href{mailto:joseph.bylund@gmail.com}{joseph.bylund@gmail.com}\\
 347-829-5863\hspace{3ex}\\
 \end{center}
+}
 
 \hrulefill
 \vspace{\littleskip}
@@ -23,59 +30,58 @@ joseph.bylund@gmail.com\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%   Kensho    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\myfontsize{\bigheader}
-\textbf{Kensho}
 \myfontsize{\bodysize}
-Cambridge, MA\\
-2018 --- Present\\
-Data Engineer\\
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \myfontsize{\bigheader}\textbf{Kensho}\myfontsize{\bodysize} & Cambridge, MA\\
+  Data Engineer & 2018 --- Present\\
+\end{tabular*}
 
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
-    \item Something about graph database and write ahead log, orientdb
-    \item Something about ci improvements
-    \item Something about data processing pipeline
-    \item Something about record linking
+\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
+    \item Designed and implemented multi-step document processing pipeline using multiple in-house ML services.
+    \item Designed and built speech-to-text alignment pipeline using SQS \& gentle forced aligner.
+    \item Implemented a number of checks in github hooks (pylint, flake8, mypy...), improving the developer experience.
+    \item Migrated fuzzy company identification service to kubernetes and optimized performance.
 \end{itemize}
+\vspace{\littleskip}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%     Moat    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \myfontsize{\bigheader}\textbf{Moat}\myfontsize{\bodysize} & New York, NY\\
+  Senior Data Scientist \& Back-end Engineer & 2013 --- 2018 \\
+\end{tabular*}
 
-\myfontsize{\bigheader}
-\textbf{Moat}
-\myfontsize{\bodysize}
-New York, NY\\
-2013 --- 2018\\
-Senior Data Scientist \& Back-end Engineer\\
-
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
-    \item Designed and implemented distributed, fault tolerant ETL reducing cost by an order of magnitude, increasing reliability and reducing processing time from {\mytilde}10 hours to {\mytilde}1 hour, making data available to clients far earlier in the day (using python, SQS, Redis, PostgreSQL).
-    \item Numerous data driven API improvements which lead to 3-4x improvement in API latency as well as maximum request size (PHP, CakePHP).
+\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
+    \item Designed and implemented distributed, fault-tolerant ETL, reducing cost by an order of magnitude, increasing reliability, and reducing processing time from {\mytilde}10 hours to {\mytilde}1 hour, making data available to clients far earlier in the day (using python, SQS, Redis, PostgreSQL).
+    \item Numerous data-driven API improvements which lead to 3-4x improvement in API latency as well as maximum request size (PHP, CakePHP).
     \item Contributed improvements to ORM (CakePHP) and core PHP in order to reduce the number of queries necessary to render a page by 5x (decreasing page load time by {\mytilde}3x) (CakePHP, c).
     \item Standardized deployment framework used to deploy thousands of servers of {\mytilde}30 different roles to AWS (AWS, EC2, boto3).
     \item Migrated primary non-statistical database (users, accounts, metadata) from MySQL to PostgreSQL improving uptime \& flexibility (MySQL, PostgreSQL, foreign data wrappers).
-    \item Migrated primary statistical database (500 million rows/day) from non-first normal form to first normal form schema improving query latency, reducing storage demands and increasing throughput.
+    \item Migrated primary statistical database (500 million rows/day) from non-first normal form to first normal form schema, improving query latency, reducing storage demands, and increasing throughput.
     \item Architected and implemented sophisticated message routing system which is responsible for moving {\mytilde}40 billion events per day from our pixel servers to our real time processing servers while balancing CPU and memory constraints (c++).
-    \item Architected and prototyped massively parallel decentralized data lake using AWS lambda and S3 for cost effective storage and low latency and cost effective queries (AWS lambda, python, PostgreSQL).
+    \item Architected and prototyped massively parallel decentralized data lake using AWS lambda and S3 for cost-effective storage and low-latency and cost-effective queries (AWS lambda, python, PostgreSQL).
 \end{itemize}
 
-\vspace{\littleskip}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Columbia    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\myfontsize{\bigheader}
-\textbf{Columbia University}
-\myfontsize{\bodysize}
-New York, NY\\
-2007 --- 2013, GPA 3.9/4.0\\
-Integrated Program In Cellular, Molecular and Biomedical Studies\\
-Doctor of Philosophy - 2013 - Monte-Carlo Sampling of Protein-Ligand Interactions and Computational Improvements to Implicit Solvent Models\\
-Master of Philosophy - 2010\\
-Master of Arts - 2009\\
+\hrulefill
+\vspace{\littleskip}
 
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \myfontsize{\bigheader}\textbf{Columbia University}\myfontsize{\bodysize} & New York, NY\\
+  Doctor of Philosophy & 2007 --- 2013, GPA 3.9/4.0 \\
+\end{tabular*}
+
+Integrated Program In Cellular, Molecular and Biomedical Studies\\
+Monte-Carlo Sampling of Protein-Ligand Interactions and Computational Improvements to Implicit Solvent Models\\
+%Master of Philosophy - 2010\\
+%Master of Arts - 2009\\
+
+\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
     \item Lead developer and maintainer ({\mytilde}80\% of source commits) of Protein Local Optimization Program (PLOP) project, a molecular mechanics library developed at Columbia University, University of California at San Francisco, and Schr\"{o}dinger (fortran).
     \item Designed and implemented the computational mutation scanning module of PLOP.
     \item Rehabilitated project from non-compiling state on arrival.
@@ -93,24 +99,26 @@ Master of Arts - 2009\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\clearpage
 
-\myfontsize{\bigheader}
-\textbf{Rice University}
-\myfontsize{\bodysize}
-Houston, TX\\
-2003 --- 2007, GPA 3.7/4.0\\
-Bachelor of Arts - Mathematics\\
-Bachelor of Science - Biology (Ecology and Evolutionary Biology)\\
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \myfontsize{\bigheader}\textbf{Rice University}\myfontsize{\bodysize} & Houston, TX\\
+  Bachelor of Arts - Mathematics & 2003 --- 2007, GPA 3.7/4.0 \\
+  Bachelor of Science - Biology (Ecology and Evolutionary Biology) & \\
+\end{tabular*}
+
 Relevant coursework: Machine Learning, Ordinary and Partial Differential Equations, Real and Complex Analysis, Combinatorics, Number Theory, Mathematical Logic, Modern Algebra, Euclidean and Non-Euclidean Geometry.
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
-    \item Designed and implemented two methods of combining information from multiple crystal structures into a single "composite motif". These combined motifs increased sensitivity and specificity of motif matching algorithms.
+\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
+    \item Designed and implemented two methods of combining information from multiple crystal structures into a single ``composite motif''. These combined motifs increased sensitivity and specificity of motif matching algorithms.
     \item Completed senior thesis project identifying homologous pseudogenes in human and chimpanzee, and determining differential mutation rates.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Open Source   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hrulefill
+\vspace{\littleskip}
+
 \myfontsize{\bigheader}
-\textbf{Selected Open Source Contributions}
+\textbf{Open Source Contributions}
 \myfontsize{\bodysize}\\
 
 % todo, how should this be formatted
@@ -119,8 +127,11 @@ Relevant coursework: Machine Learning, Ordinary and Partial Differential Equatio
 \vspace{\littleskip}
 \vspace{\littleskip}
 
+\myfontsize{\littleheader}
 \href{https://github.com/pypa/pip}{Python Package Installer - Pip}\\
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
+\myfontsize{\bodysize}
+
+\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
     \item Up to 10x improved performance of package version resolution (\href{https://github.com/pypa/pip/pull/9748}{pull request}).
     \item 2x performance increase in comparison of tag objects (\href{https://github.com/pypa/packaging/pull/417}{pull request}).
 \end{itemize}
@@ -129,15 +140,19 @@ These changes decreased the time spent on pip steps as part of ci process (at Ke
 \vspace{\littleskip}
 \vspace{\littleskip}
 
+\myfontsize{\littleheader}
 \href{https://github.com/php/php-src}{PHP}\\
+\myfontsize{\bodysize}
 Avoided roundtrip to database in order to get column type for most common datatypes (\href{https://github.com/php/php-src/pull/1534}{pull request}).
 This decreased the number of queries run as well as page load time by more than an order of magnitude in some cases (at Moat).
 
 \vspace{\littleskip}
 \vspace{\littleskip}
 
+\myfontsize{\littleheader}
 \href{https://gitlab.gnome.org/GNOME/shotwell}{Gnome Shotwell Photo Manager}\\
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
+\myfontsize{\bodysize}
+\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
     \item Decreased the number of times raw images were decoded during import process, improving photo import performance.
     \item Recursively included contained files in the folder browser.
     \item Added support of panoramic images as event thumbnails.
@@ -153,10 +168,11 @@ This decreased the number of queries run as well as page load time by more than 
 \myfontsize{\littleheader}
 \textbf{Technologies \& Skills}\\
 \myfontsize{\bodysize}
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.5ex]
-    \item Extensive experience with AWS services and AWS api (EC2, dynamodb, kinesis, RDS...)
+\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
+    \item Extensive experience with AWS services and apis (EC2, dynamodb, kinesis, RDS...)
     \item Python, C++, shell (and previously FORTRAN, vala)
-    \item PostgreSQL, mysql, Vertica, redis, git
+    \item PostgreSQL, kubernetes, MySQL, Vertica, redis, git
+    \item Kafka, RabbitMQ, SQS
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -164,20 +180,7 @@ This decreased the number of queries run as well as page load time by more than 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \iffalse
-\vspace{\mybigskip}
-\vspace{\mybigskip}
-\myfontsize{\littleheader}
-\textbf{Publications}\\
-\myfontsize{\bodysize}
-\vspace{1ex}
-Miller, Edward, Colleen Murrett, Kai Zhu, Suwen Zhao, Dahlia Goldfeld, Joseph Bylund, and Richard Friesner. ``Prediction of Long Loops with Embedded Secondary Structure using the Protein Local Optimization Program.'' \textit{Journal of Chemical Theory and Computation}. (2013)\\
-\vspace{1ex}
-Bylund, Joseph, Richard Friesner. ``Monte-Carlo methods in sampling of protein-ligand binding conformations.'' \textit{American Chemical Society National Meeting Poster Presentation}. (2012)\\
-\vspace{1ex}
-Li, Jianing, Severin Schneebeli, Joseph Bylund, Ramy Farid, and Richard Friesner. ``IDSite: An accurate approach to predict P450-mediated drug metabolism.'' \textit{Journal of Chemical Theory and Computation} 7, no. 11 (2011): 3829-3845.\\
-\vspace{1ex}
-Chen, Brian, Drew Bryant, Amanda Cruess, Joseph Bylund, Viacheslav Fofanov, Marek Kimmel, Olivier Lichtarge, and Lydia Kavraki. ``Composite motifs integrating multiple protein structures increase sensitivity for function prediction.'' In \textit{Comput Syst Bioinformatics Conf}, vol. 6, pp. 343-55. 2007.\\
+\input{publications}
 \fi
-
 
 \center{Last updated \monthname, \the\year}
