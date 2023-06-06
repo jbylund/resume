@@ -8,6 +8,16 @@
 ## Altana
 [Altana](https://altana.ai/) - ai powered solutions for shipping/logistics/customs/government - supply chain intelligence  
 Spring 2022 - Summer 2023  
+* Business network discovery and traversal - built tools to construct business networks from graph of world
+wide shipment data.
+* Search microservice - Built search microservice for companies, facilities and transactions in the Altana atlas using FastAPI, Pydantic, ArangoDB.
+* Arango client library - built http client for ArangoDB supporting synchronous and asynchronous requests
+used in search mircoservice.
+* Spark client library - shimmed three different client libraries (pyspark, pyhive, databricks-sql-connector) to
+pep-249 interface, supports creation of business networks.
+* Geocoding client - writing api client, measuring and improving accuracy, building pipeline.
+* Geocoding pipeline - built continuous address geocoding pipeline and geocoded 4￿00 million addresses
+
 
 ## Kensho
 [Kensho](https://kensho.com/) - ai solutions for the financial industry  
