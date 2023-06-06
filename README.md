@@ -15,8 +15,8 @@ wide shipment data.
 used in search mircoservice.
 * Spark client library - shimmed three different client libraries (pyspark, pyhive, databricks-sql-connector) to
 pep-249 interface, supports creation of business networks.
-* Geocoding client - writing api client, measuring and improving accuracy, building pipeline.
-* Geocoding pipeline - built continuous address geocoding pipeline and geocoded 4￿00 million addresses
+* Geocoding client - wrote geocoding client library which handles address pre-processing and http requests to a pelias service. Built tooling to measure geocoding accuracy over time.
+* Geocoding pipeline - built continuous address geocoding pipeline and geocoded the ~400 million addresses in the Altana atlas.
 
 
 ## Kensho
