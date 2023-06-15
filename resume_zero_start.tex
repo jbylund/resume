@@ -1,7 +1,7 @@
 \documentclass[letterpaper,12pt]{article}
 
 \setlength{\parindent}{0in}
-\usepackage[margin=0.9in]{geometry}
+\usepackage[margin=0.8in]{geometry}
 \usepackage{calc}
 \usepackage{xfrac}
 \usepackage{enumitem}
@@ -35,7 +35,7 @@
 
 \newcommand{\bigheader}{14pt}
 \newcommand{\littleheader}{12pt}
-\newcommand{\bodysize}{9.5pt}
+\newcommand{\bodysize}{10pt}
 
 \newlength{\mysize}
 \newcommand{\myfontsize}[1]{\setlength{\mysize}{#1}%
@@ -47,8 +47,18 @@
     \setlength{\parskip}{0pt}}%
   {\end{itemize}}
 
-%\newcommand{\mytilde}{\fontfamily{ptm}\selectfont\texttildelow}
-\newcommand{\mytilde}{\~{}}
+% \newcommand{\mytilde}{\fontfamily{ptm}\selectfont\texttildelow}
+% \newcommand{\mytilde}{\~{}}
+% \newcommand{\mytilde}{\url{~}}
+% \newcommand{\mytilde}{\char`~}
+% \newcommand{\mytilde}{\~{}}
+
+% 1.5 is too high
+% 0.5 is too low
+% \newcommand{\mytilde}{\raisebox{0.1ex}{\~{}}}
+% \newcommand{\mytilde}{{\raise.25ex\hbox{$\scriptstyle\sim$}}}
+\newcommand{\mytilde}{\nolinkurl{~}}
+
 \setlength\tabcolsep{0pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -62,7 +72,8 @@
 %\usefont{T1}{cmss}{m}{n}
 %\usefont{T1}{palatino}{m}{n}
 %\usefont{T1}{ugm}{m}{n}
-\setmainfont{Ubuntu}
+% \setmainfont{Ubuntu}
+\setmainfont{DejaVuSans}
 \pagestyle {empty}
 \raggedright
 \input{mycontents}
