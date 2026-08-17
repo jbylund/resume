@@ -35,17 +35,17 @@ jobs:
       - name: Install TeX Live
         run: |
           sudo apt-get update -qq
-          # xetex: xelatex, fontspec, geometry, hyperref, xfrac; fonts-dejavu: the
-          # DejaVu TTFs \setmainfont needs. Everything else (enumitem, datetime,
-          # DejaVuSans.sty, pzdr.tfm) is vendored in texmf/, which keeps
-          # texlive-latex-extra, -fonts-extra and -fonts-recommended -- 834MB of
-          # downloads -- out of this job. See texmf/README.md.
+          # xetex: xelatex, fontspec, geometry, hyperref, xcolor; fonts-lato: the
+          # Lato TTFs \setmainfont needs. Everything else (enumitem, datetime,
+          # pzdr.tfm) is vendored in texmf/, which keeps texlive-latex-extra,
+          # -fonts-extra and -fonts-recommended -- 834MB of downloads -- out of
+          # this job. See texmf/README.md.
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            texlive-xetex fonts-dejavu
+            texlive-xetex fonts-lato
 
       - name: Build PDF
         run: |
-          # so xelatex resolves \setmainfont{DejaVuSans} to the fonts-dejavu TTFs
+          # so xelatex resolves \setmainfont{Lato} to the fonts-lato TTFs
           export OSFONTDIR=/usr/share/fonts
           # Pin the timestamp to the start of the current month so builds are
           # byte-reproducible: the only date the resume shows is "Last updated
