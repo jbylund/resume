@@ -17,8 +17,23 @@ Boston, MA\\
 \vspace{\littleskip}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%   Skills    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%    Klaviyo    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\myfontsize{\bodysize}
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \myfontsize{\bigheader}\textbf{Klaviyo}\myfontsize{\bodysize} & Boston, MA\\
+  Lead Software Engineer & August 2023 --- Present\\
+\end{tabular*}
+
+\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
+    \item Purchase containment filtering - designed a bloom filter architecture replacing repeated large-scale ClickHouse scans, bulk-streaming (person, item) pairs into Redis. Reduced data scanned by {\mytilde}1000x on a path accounting for {\mytilde}1/3 of total ClickHouse cluster load. Sketched the design for a partner team and shepherded them through implementation (ClickHouse, Redis, python).
+    \item Information schema as a service - prototyped a SQL interface over multi-tenant, schema-on-read JSON data, and later rejoined the team that productionized it. Built the manifest service translating user-supplied SQL into queries against JSON-backed tables, giving customers a typed SQL API over untyped storage. Cut manifest resolution latency 3x end to end (python, gRPC, MySQL, StarRocks).
+    \item Query service - founding engineer on a gRPC query service over multi-tenant event data: interceptor stack (rate limiting, validation, concurrency limiting, slow-request logging), sharded connection pooling, executors for ClickHouse, PostgreSQL and MySQL, and query rewriting (python, gRPC, ClickHouse, PostgreSQL, MySQL).
+    \item Metrics service performance - added profiling instrumentation, then optimized query mapping and result processing, reducing latency {\mytilde}58\% across every request the service serves (python, gRPC, ClickHouse).
+    \item Custom objects - built gRPC APIs letting customers define schemas for their own objects, with per-company partitioned rate limiting and a shared Redis Sentinel client, modeled as data vault hubs, links and satellites (python, gRPC, Redis, Pulsar).
+    \item Developer velocity - parallelized test containers, added CI cache targets, and built local development environments used across teams.
+\end{itemize}
+\vspace{\littleskip}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
