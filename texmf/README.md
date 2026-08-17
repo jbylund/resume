@@ -10,8 +10,9 @@ large Debian package:
 | `enumitem.sty` | `enumitem` | `texlive-latex-extra` | 117 MB |
 | `datetime.sty`, `datetime-defaults.sty` | `datetime` | `texlive-latex-extra` | " |
 | `fmtcount.sty`, `fcnumparser.sty`, `fcprefix.sty`, `fc-english.def` | `fmtcount` | `texlive-latex-extra` | " |
+| `ulem.sty` | `ulem` | `texlive-plain-generic` | 24 MB |
 
-171 KB vendored replaces 178 MB of downloads. CI therefore installs only
+186 KB vendored replaces 202 MB of downloads. CI therefore installs only
 `texlive-xetex` and `fonts-lato`.
 
 The typeface itself is *not* vendored: Lato's four faces are 2.7 MB, which is a
@@ -19,6 +20,10 @@ different proposition from a 50 KB style file, so CI installs the 3 MB `fonts-la
 package instead. A local build needs Lato present on the system
 (`brew install --cask font-lato` on macOS); without it `fontspec` stops with a clear
 "font not found" rather than silently substituting.
+
+`ulem.sty` provides `\uline`, used to underline links in a way that survives a line
+break (plain `\underline` does not). It is Donald Arseneau's, freely redistributable
+with its copyright notice intact, rather than LPPL like the rest.
 
 `pzdr.tfm` is wanted by hyperref's xetex driver for link annotations; the `fmtcount`
 files are a dependency of `datetime`, which supplies the `\monthname` in the

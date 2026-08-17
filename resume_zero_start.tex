@@ -14,18 +14,31 @@
 \usepackage{datetime}   % \monthname in the "Last updated" line
 \usepackage{fontspec}
 \usepackage{xcolor}
+\usepackage[normalem]{ulem}   % \uline, for link underlines that survive line breaks
 \usepackage{hyperref}
 
 % Lato: narrower than DejaVu Sans, so it fits more words per line at a given size.
 % Provided by the fonts-lato package (Debian/Ubuntu) or the Lato cask (macOS).
-\setmainfont{Lato}[Numbers=Lining]
+%
+% Ligatures=TeX is what turns `---` into an em dash and `` '' into curly quotes.
+% Stated explicitly rather than relying on the font: not every face carries the
+% feature, and without it date ranges print a literal `---`.
+\setmainfont{Lato}[Numbers=Lining, Ligatures=TeX]
 
 \definecolor{ink}{HTML}{000000}
 % monochrome: give muted/accent their own hex here to reintroduce a second tone
 \colorlet{muted}{ink}
 \colorlet{accent}{ink}
+% links are the one deliberate exception to the all-black setting -- the projects
+% and open-source sections are evidence, so they need to read as clickable
+\definecolor{link}{HTML}{1F4E79}
 
-\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent, pdfborder={0 0 0}}
+\hypersetup{colorlinks=true, urlcolor=link, linkcolor=link, pdfborder={0 0 0}}
+
+% underline every link, in addition to colouring it. Assumes the two-argument
+% \href{url}{text} form, which is the only one this document uses.
+\let\hrefnoline\href
+\renewcommand{\href}[2]{\hrefnoline{#1}{\uline{#2}}}
 \color{ink}
 \setlength{\parindent}{0pt}
 \pagestyle{empty}
@@ -116,6 +129,10 @@
 
 % "Thesis:", "Relevant coursework:" lead-ins
 \newcommand{\mylead}[1]{{\bfseries #1}}
+
+% The topic a bullet is about, e.g. \blead{Query service} founding engineer on...
+% Bold so a reader skimming gets the list of capabilities without reading the prose.
+\newcommand{\blead}[1]{\textbf{#1} --- }
 
 \newenvironment{bullets}
   {\begin{itemize}[topsep=0.7ex, partopsep=0pt, parsep=0pt, itemsep=0.5ex,
