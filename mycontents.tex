@@ -127,12 +127,10 @@ Avoided roundtrip to database in order to get column type for most common dataty
 This decreased the number of queries run as well as page load time by more than an order of magnitude in some cases (at Moat).
 
 \mysubhead{\href{https://gitlab.gnome.org/GNOME/shotwell}{Gnome Shotwell Photo Manager}}
+47 commits from 2013 to 2021, across the import pipeline, thumbnail cache, saved searches, publishing plugins and build system (vala).
 \begin{bullets}
-    \item Decreased the number of times raw images were decoded during import process, improving photo import performance.
-    \item Recursively included contained files in the folder browser.
-    \item Added support of panoramic images as event thumbnails.
-    \item Updated searches to search comments and robustly treat accented characters.
-    \item Fixed a number of UI experiences such as adding icons to buttons and windows, and correcting misleading text.
+    \item \blead{Import throughput}reworked thumbnail generation to decode each photo once and derive every thumbnail size from that single decode, rather than decoding once per size (\href{https://gitlab.gnome.org/GNOME/shotwell/-/commit/3a424909653f77e1e337ac3e1aad803b49f04942}{commit}).
+    \item \blead{RAW metadata}cached metadata on the RAW reader so a file is parsed once per import instead of on every access (\href{https://gitlab.gnome.org/GNOME/shotwell/-/commit/979f26a1347b39461722e9c9ef15caa6285b6b9f}{commit}).
 \end{bullets}
 
 
