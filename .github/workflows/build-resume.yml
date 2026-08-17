@@ -1,0 +1,75 @@
+name: Build resume
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.tex"
+      - resume.bib
+      - makefile
+      - texmf/**
+      - .github/workflows/build-resume.yml
+  pull_request:
+    paths:
+      - "**.tex"
+      - resume.bib
+      - makefile
+      - texmf/**
+      - .github/workflows/build-resume.yml
+  # so the PDF can be refreshed when the "Last updated <month>" line rolls over
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-resume-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install TeX Live
+        run: |
+          sudo apt-get update -qq
+          # xetex: xelatex, fontspec, geometry, hyperref, xfrac; fonts-dejavu: the
+          # DejaVu TTFs \setmainfont needs. Everything else (enumitem, datetime,
+          # DejaVuSans.sty, pzdr.tfm) is vendored in texmf/, which keeps
+          # texlive-latex-extra, -fonts-extra and -fonts-recommended -- 834MB of
+          # downloads -- out of this job. See texmf/README.md.
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            texlive-xetex fonts-dejavu
+
+      - name: Build PDF
+        run: |
+          # so xelatex resolves \setmainfont{DejaVuSans} to the fonts-dejavu TTFs
+          export OSFONTDIR=/usr/share/fonts
+          # Pin the timestamp to the start of the current month so builds are
+          # byte-reproducible: the only date the resume shows is "Last updated
+          # <month>, <year>", so nothing but a content change should produce a diff.
+          export SOURCE_DATE_EPOCH="$(date -u -d "$(date -u +%Y-%m-01)" +%s)"
+          export FORCE_SOURCE_DATE=1
+          make
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: joseph_bylund-pdf
+          path: joseph_bylund.pdf
+          if-no-files-found: error
+
+      - name: Commit rebuilt PDF
+        if: github.event_name != 'pull_request'
+        run: |
+          if git diff --quiet -- joseph_bylund.pdf; then
+            echo "PDF unchanged, nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # -f because .gitignore lists *.pdf, though this one is tracked
+          git add -f joseph_bylund.pdf
+          git commit -m "Rebuild resume PDF from ${GITHUB_SHA::7}"
+          git push || { git pull --rebase && git push; }

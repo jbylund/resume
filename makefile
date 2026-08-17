@@ -1,8 +1,15 @@
 BASENAME := joseph_bylund
 OUTPUTNAME := $(BASENAME).$(DATE).pdf
 OUTPUTNAME := $(BASENAME).pdf
-TEXCOMMAND := $(shell type -a xelatex | xargs -n1 echo | grep '/' | head -n 1)
-BIBCOMMAND := $(shell type -a bibtex | xargs -n1 echo | grep '/' | head -n 1)
+# command -v rather than type -a: portable to /bin/sh (dash) on CI runners
+TEXCOMMAND := $(shell command -v xelatex)
+
+# texmf/ vendors the small distribution files this document needs that otherwise
+# only arrive with enormous texlive packages -- 172KB here in place of 834MB of
+# downloads. See texmf/README.md for provenance.
+export TEXINPUTS := $(CURDIR)/texmf//:
+export TFMFONTS := $(CURDIR)/texmf//:
+VENDORED := $(wildcard texmf/*.sty texmf/*.def texmf/*.tfm)
 
 .PHONY: $(OUTPUTNAME)
 
@@ -10,10 +17,6 @@ all: $(OUTPUTNAME)
 
 view : $(OUTPUTNAME)
 	@timeout 30 evince $(shell ls -t *.pdf|head -n 1) || true
-
-DejaVuSans.sty:
-	wget https://ctan.math.utah.edu/ctan/tex-archive/fonts/dejavu/tex/DejaVuSans.sty || \
-		curl -O https://ctan.math.utah.edu/ctan/tex-archive/fonts/dejavu/tex/DejaVuSans.sty
 
 /usr/share/texlive/texmf-dist/tex/latex/base/article.cls:
 	ls /usr/share/texlive/texmf-dist/tex/latex/base/article.cls 2>/dev/null || \
@@ -27,16 +30,13 @@ $(TEXCOMMAND):
 $(FDUPES):
 	fdupes --version || apt-get install fdupes
 
-$(OUTPUTNAME) : $(TEXCOMMAND) $(FDUPES) mycontents.tex resume_zero_start.tex makefile resume.bib DejaVuSans.sty
-	mv -f $(OUTPUTNAME) $(OUTPUTNAME).bak
-	@echo "Pass 1 of 3..."
+$(OUTPUTNAME) : $(TEXCOMMAND) $(FDUPES) mycontents.tex resume_zero_start.tex publications.tex makefile $(VENDORED)
+	@mv -f $(OUTPUTNAME) $(OUTPUTNAME).bak 2>/dev/null || true
+	@echo "Pass 1 of 2..."
 	true | $(TEXCOMMAND) -vv -jobname $(BASENAME) resume_zero_start.tex
-	@echo "Pass 2 of 3..."
-	@$(BIBCOMMAND) $(BASENAME) > /dev/null || true
-	true | $(TEXCOMMAND) -jobname $(BASENAME) resume_zero_start.tex > /dev/null
-	@echo "Pass 3 of 3..."
+	@echo "Pass 2 of 2..."
 	$(TEXCOMMAND) -jobname $(BASENAME) resume_zero_start.tex > /dev/null
-	@/bin/rm -rf *.log *.aux *.bbl *.blg joseph_bylund.out
+	@/bin/rm -rf *.log *.aux *.out
 	ls $(OUTPUTNAME)
 
 clean :
