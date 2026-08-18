@@ -5,8 +5,6 @@ Lead Software Engineer — Boston, MA
 [joseph.bylund@gmail.com](mailto:joseph.bylund+resume@gmail.com?subject=Resume%20from%20Github)
 · [resume (pdf)](https://github.com/jbylund/resume/raw/main/joseph_bylund.pdf)
 
-This README mirrors the pdf; the pdf is built from [mycontents.tex](mycontents.tex).
-
 # Experience
 
 ## Klaviyo — Lead Software Engineer
