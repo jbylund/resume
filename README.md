@@ -22,20 +22,20 @@ Boston, MA · August 2023 - Present
 ## Altana — Senior Software Engineer
 New York City (Remote) · March 2022 - June 2023
 
-* **Business network discovery and traversal** - built tools to construct business networks from graph of world wide shipment data.
-* Built search microservice for companies, facilities and transactions using FastAPI, Pydantic, ArangoDB.
-* **Arango client library** - built http client for ArangoDB supporting synchronous and asynchronous requests used in search microservice.
-* **Spark client library** - shimmed three different client libraries (pyspark, pyhive, databricks-sql-connector) to pep-249 interface, supports creation of business networks.
-* **Geocoding client** - writing api client, measuring and improving accuracy, building pipeline.
-* **Geocoding pipeline** - built continuous address geocoding pipeline and geocoded ~400 million addresses.
+* **Business network discovery and traversal** - built the tools constructing business networks from a graph of worldwide shipment data (python).
+* **Search service** - built the search microservice for companies, facilities and transactions, and the synchronous and asynchronous ArangoDB http client behind it (python, FastAPI, Pydantic, ArangoDB).
+* **Spark client library** - shimmed three client libraries (pyspark, pyhive, databricks-sql-connector) to one pep-249 interface, so network construction could run against any of them.
+* **Geocoding** - built a continuous address geocoding pipeline and its api client, geocoded ~400 million addresses, and measured and improved match accuracy (python).
 
 ## Kensho — Software Engineer
 Cambridge, MA · September 2018 - March 2022
 
-* Designed and implemented multi-step document processing pipeline using multiple in-house ML services.
-* Designed and built speech-to-text alignment pipeline using SQS & gentle forced aligner.
-* Implemented a number of checks in github hooks (pylint, flake8, mypy...), improving the developer experience.
-* Migrated fuzzy company identification service to kubernetes and optimized performance.
+* **Document processing** - designed and built a multi-step pipeline orchestrating several in-house ML services (python).
+* **PDF extraction performance** - the extractor held pages in a memory-efficient form that the pipeline then mutated heavily. Wrapped the hot path in a conversion to a mutable representation and back, invisible to every caller and with no test changed, cutting the worst documents from 30-60 minutes to 1-2 minutes (python).
+* **Neighbour search** - applied spatial hashing to an element-to-element distance search, comparing only the same and adjacent cells rather than every pair (python).
+* **Speech-to-text alignment** - built the pipeline aligning earnings call transcripts to audio with the gentle forced aligner (python, SQS).
+* **Company identification** - migrated the fuzzy matching service to kubernetes, then profiled and parallelized it for a ~3x speedup (python, kubernetes).
+* **Developer experience** - added pylint, flake8 and mypy checks to github hooks.
 
 ## Moat — Senior Backend Engineer & Data Scientist
 New York, NY · September 2013 - September 2018
