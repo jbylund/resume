@@ -70,9 +70,10 @@
 \mysubhead{Sylvan Librarian (\href{https://sylvan-librarian.com/}{sylvan-librarian.com}, \href{https://github.com/jbylund/sylvan_librarian}{source})}
 Open source Magic: The Gathering card search engine in rust, implementing Scryfall's query syntax --- a query engine with its own parser, cost based planner and execution engine. Self-hosted with blue/green deploys behind nginx; independently forked to Cloudflare Workers by an outside contributor.
 \begin{bullets}
-    \item \blead{Cost based query planner}replaced a hand-maintained decision tree over four execution plans with a cost model picking the cheapest, fed exact counts (plane popcounts, partition-point widths, posting lengths) rather than cardinality estimates. Chooses the empirically fastest plan on 87 of 88 calibration queries at unchanged throughput: shipped for extensibility, not speed (rust).
-    \item \blead{In-process query engine}replaced the PostgreSQL search path with an in-memory rust/PyO3 filter engine over 96k cards, {\mytilde}76x faster on a geometric mean of representative queries (0.20ms vs 14.9ms), taking the database out of the hot path (rust, PyO3).
-    \item \blead{Query parser}hand-rolled a recursive descent parser for the full query language, {\mytilde}49x faster than the pyparsing grammar it replaced (158k vs 3.2k parses/sec), with a 133 case parity suite asserting both emit identical SQL (python).
+    \item \blead{Cost based query planner}replaced a hand-maintained decision tree over four execution plans with a cost model picking the cheapest, fed exact counts (plane popcounts, partition-point widths, posting lengths) rather than cardinality estimates. Chooses the empirically fastest plan on 87 of 88 calibration queries at unchanged throughput: shipped for extensibility, not speed (rust, \href{https://github.com/jbylund/sylvan_librarian/pull/712}{pull request}).
+    \item \blead{In-process query engine}replaced the PostgreSQL search path with an in-memory rust/PyO3 filter engine over 96k cards, {\mytilde}76x faster on a geometric mean of representative queries (0.20ms vs 14.9ms), taking the database out of the
+hot path (rust, PyO3, \href{https://github.com/jbylund/sylvan_librarian/pull/490}{pull request}).
+    \item \blead{Query parser}hand-rolled a recursive descent parser for the full query language, {\mytilde}49x faster than the pyparsing grammar it replaced (158k vs 3.2k parses/sec), with a 133 case parity suite asserting both emit identical SQL (python, \href{https://github.com/jbylund/sylvan_librarian/pull/482}{pull request}).
 \end{bullets}
 
 \mysubhead{\href{https://github.com/jbylund/pg_mimic}{pg\_mimic}}
