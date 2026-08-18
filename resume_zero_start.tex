@@ -73,25 +73,24 @@
 % line), so pages fill faster than the percentage suggests. Measured against the
 % current content and section order:
 %
-%   103%  ->  3 pages, last page 79% full
-%   104%  ->  3 pages, last page 86% full   <-- current setting
-%   105%  ->  3 pages, last page 97% full
-%   106%  ->  3 pages, last page 98% full
-%   107%  ->  spills onto a 4th page
+%    99%  ->  3 pages, last page 80% full
+%   100%  ->  3 pages, last page 89% full
+%   101%  ->  3 pages, last page 89% full   <-- current setting
+%   102%  ->  spills onto a 4th page
 %
-% 104% rather than 105% on purpose: 105 fills the page more but leaves no room to
-% add a line. If content grows and the build fails the page check, drop a point
-% rather than editing individual sizes.
+% If content grows and the build fails the page check, drop a point rather than
+% editing individual sizes.
 %
-% Was 107% until the header gained a links line and Open Source gained the
-% typeshed entry, which together cost about three points of scale.
+% Was 107% before the header gained a links line and Open Source the typeshed
+% entry, and 104% before Kensho gained the extraction, neighbour-search and
+% entity-matching bullets. Each block of content costs two to three points.
 %
 % These figures are specific to the current section order. When Education sat in
 % the middle of the document the safe range was not even contiguous -- 105, 106 and
 % 109 all spilled while 107 and 108 fit -- because a section that cannot fit its
 % \needlines reservation at the foot of a page pushes everything after it. Re-measure
 % after moving sections around, not just after adding content.
-\newcommand{\scalepct}{104}
+\newcommand{\scalepct}{101}
 \newcommand{\sz}[2]{%
   \fontsize{\the\dimexpr#1pt*\scalepct/100\relax}%
            {\the\dimexpr#2pt*\scalepct/100\relax}\selectfont}
