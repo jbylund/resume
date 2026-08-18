@@ -29,19 +29,39 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # normally about 90 seconds. The default is 360 minutes, long enough that a
+    # hung apt sits there until someone notices and cancels it by hand.
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
 
       - name: Install TeX Live
+        # normally ~45s, so 3 minutes is four times the headroom. Retries cover a
+        # flaky mirror; the timeout turns a hang into a fast failure. Kept below the
+        # job budget so a stuck install fails here, with a clear step name, rather
+        # than as a job-level timeout.
+        timeout-minutes: 3
+        env:
+          APT_OPTS: -o Acquire::Retries=3 -o Dpkg::Use-Pty=0
         run: |
-          sudo apt-get update -qq
+          # The runners point apt at azure.archive.ubuntu.com. That mirror stalled
+          # on three consecutive runs, each one burning the whole step budget, so
+          # use the canonical archive instead. 24.04 keeps its sources in the
+          # deb822 file; the older path is listed too in case the image changes.
+          sudo sed -i 's|https\?://azure.archive.ubuntu.com/ubuntu|http://archive.ubuntu.com/ubuntu|g' \
+            /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list 2>/dev/null || true
+          echo "apt mirrors in use:"
+          grep -rhoE 'https?://[^ ]*ubuntu[^ ]*' \
+            /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list 2>/dev/null | sort -u | sed 's/^/  /'
+
+          sudo apt-get $APT_OPTS update -qq
           # xetex: xelatex, fontspec, geometry, hyperref, xcolor; fonts-lato: the
           # Lato TTFs \setmainfont needs. Everything else (enumitem, datetime,
           # pzdr.tfm) is vendored in texmf/, which keeps texlive-latex-extra,
           # -fonts-extra and -fonts-recommended -- 834MB of downloads -- out of
           # this job. See texmf/README.md.
           # poppler-utils supplies pdfinfo/pdftotext for the length check below
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+          sudo DEBIAN_FRONTEND=noninteractive apt-get $APT_OPTS install -y --no-install-recommends \
             texlive-xetex fonts-lato poppler-utils
 
       - name: Build PDF

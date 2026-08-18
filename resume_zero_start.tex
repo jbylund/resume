@@ -53,16 +53,23 @@
 %
 % Raising this makes the text bigger AND the measure shorter (fewer characters per
 % line), so pages fill faster than the percentage suggests. Measured against the
-% current content:
+% current content and section order:
 %
-%   100%  ->  3 pages, last page 83% full
-%   104%  ->  3 pages, last page 98% full   <-- current setting
-%   105%  ->  spills onto a 4th page
+%   104%  ->  3 pages, last page 74% full, 13 lines spare
+%   106%  ->  3 pages, last page 99% full,  0.3 lines spare
+%   107%  ->  3 pages, last page 91% full,  4.7 lines spare   <-- current setting
+%   108%  ->  spills onto a 4th page
 %
-% So 104% is deliberately close to the edge: there is about one line of headroom.
-% If you add a bullet and the PDF grows to 4 pages, drop this to 103 (92% full,
-% roughly four lines of slack) rather than editing individual sizes.
-\newcommand{\scalepct}{104}
+% 107% rather than 106% on purpose: 106% fills the page more but leaves no room to
+% add a line. If content grows and the build fails the page check, drop to 104
+% rather than editing individual sizes.
+%
+% These figures are specific to the current section order. When Education sat in
+% the middle of the document the safe range was not even contiguous -- 105, 106 and
+% 109 all spilled while 107 and 108 fit -- because a section that cannot fit its
+% \needlines reservation at the foot of a page pushes everything after it. Re-measure
+% after moving sections around, not just after adding content.
+\newcommand{\scalepct}{107}
 \newcommand{\sz}[2]{%
   \fontsize{\the\dimexpr#1pt*\scalepct/100\relax}%
            {\the\dimexpr#2pt*\scalepct/100\relax}\selectfont}
@@ -127,7 +134,7 @@
 \newcommand{\mysubhead}[1]{%
   \needlines{3.5\baselineskip}\vspace{1.6ex}{\sz{11}{13}\bfseries #1}\par\vspace{0.3ex}}
 
-% "Thesis:", "Relevant coursework:" lead-ins
+% the "Thesis:" lead-in
 \newcommand{\mylead}[1]{{\bfseries #1}}
 
 % The topic a bullet is about, e.g. \blead{Query service} founding engineer on...
