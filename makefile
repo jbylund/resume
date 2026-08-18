@@ -11,6 +11,16 @@ export TEXINPUTS := $(CURDIR)/texmf//:
 export TFMFONTS := $(CURDIR)/texmf//:
 VENDORED := $(wildcard texmf/*.sty texmf/*.def texmf/*.tfm)
 
+# fonts/lato/ holds Lato as it ships from upstream; the build copies in
+# build/fonts/ have two cmap aliases stripped so the PDF text layer extracts
+# ASCII hyphens instead of U+2010. See tools/unalias-hyphen.py for why, and
+# fonts/README.md for provenance. Patched at build time rather than committed
+# because Lato's OFL reserves the name.
+LATO_SRC := $(wildcard fonts/lato/*.ttf)
+# a stamp file, not the .ttf list: one invocation patches every face, and
+# grouped targets (`&:`) need GNU Make 4.3 while macOS still ships 3.81
+LATO_STAMP := build/fonts/.patched
+
 .PHONY: $(OUTPUTNAME)
 
 all: $(OUTPUTNAME)
@@ -30,7 +40,12 @@ $(TEXCOMMAND):
 $(FDUPES):
 	fdupes --version || apt-get install fdupes
 
-$(OUTPUTNAME) : $(TEXCOMMAND) $(FDUPES) mycontents.tex resume_zero_start.tex publications.tex makefile $(VENDORED)
+$(LATO_STAMP) : $(LATO_SRC) tools/unalias-hyphen.py
+	@echo "Patching font cmaps..."
+	python3 tools/unalias-hyphen.py fonts/lato build/fonts
+	@touch $@
+
+$(OUTPUTNAME) : $(TEXCOMMAND) $(FDUPES) mycontents.tex resume_zero_start.tex publications.tex makefile $(VENDORED) $(LATO_STAMP)
 	@mv -f $(OUTPUTNAME) $(OUTPUTNAME).bak 2>/dev/null || true
 	@echo "Pass 1 of 2..."
 	true | $(TEXCOMMAND) -vv -jobname $(BASENAME) resume_zero_start.tex
@@ -41,5 +56,6 @@ $(OUTPUTNAME) : $(TEXCOMMAND) $(FDUPES) mycontents.tex resume_zero_start.tex pub
 
 clean :
 	@/bin/rm -f $(OUTPUTNAME)
+	@/bin/rm -rf build
 
 .PHONY : clean view
