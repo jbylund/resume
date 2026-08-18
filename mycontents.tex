@@ -51,14 +51,12 @@
 \myjob{Moat}{New York, NY}{Senior Data Scientist \& Back-end Engineer}{2013 --- 2018}
 
 \begin{bullets}
-    \item Designed and implemented distributed, fault-tolerant ETL, reducing cost by an order of magnitude, increasing reliability, and reducing processing time from {\mytilde}10 hours to {\mytilde}1 hour, making data available to clients far earlier in the day (using python, SQS, Redis, PostgreSQL).
-    \item \blead{API performance}cut API latency 3--4x and raised the maximum request size, guided by profiling data (PHP, CakePHP).
-    \item Contributed improvements to ORM (CakePHP) and core PHP in order to reduce the number of queries necessary to render a page by 5x (decreasing page load time by {\mytilde}3x) (CakePHP, c).
-    \item Standardized deployment framework used to deploy thousands of servers of {\mytilde}30 different roles to AWS (AWS, EC2, boto3).
-    \item Migrated primary non-statistical database (users, accounts, metadata) from MySQL to PostgreSQL, improving uptime \& flexibility (MySQL, PostgreSQL, foreign data wrappers).
-    \item Migrated primary statistical database (500 million rows/day) from non-first normal form to first normal form schema, improving query latency, reducing storage demands, and increasing throughput.
-    \item Architected and implemented sophisticated message routing system which is responsible for moving {\mytilde}40 billion events per day from pixel servers to real-time processing servers while balancing CPU and memory constraints (c++).
-    \item Architected and prototyped massively parallel decentralized data lake using AWS lambda and S3 for cost-effective storage and low-latency and cost-effective queries (AWS lambda, python, PostgreSQL).
+    \item \blead{Distributed ETL}designed and built a fault-tolerant pipeline, cutting cost by an order of magnitude and processing time from {\mytilde}10 hours to {\mytilde}1 hour, so data reached clients far earlier in the day (python, SQS, Redis, PostgreSQL).
+    \item \blead{Event routing}routed {\mytilde}40 billion events per day from pixel servers into real-time processing, sharding by client, by configurable key and by session, so that one client's traffic could not degrade another's and data arrived pre-aggregated, leaving the ETL far less to merge (c++).
+    \item \blead{Statistical database}migrated the primary statistical store (500 million rows/day) from non-first to first normal form, improving query latency and throughput while reducing storage demands.
+    \item \blead{Stats API performance}sped up the primary statistics routes clients called for reporting and exports, cutting latency {\mytilde}3x and raising the maximum request size through profiling-guided work on serialization and the query paths behind them (PHP, CakePHP).
+    \item \blead{Platform}migrated users, accounts and metadata from MySQL to PostgreSQL with zero downtime, bridging the two through a MySQL foreign data wrapper during the cutover, and standardized the deployment framework running thousands of servers across {\mytilde}30 roles on AWS (PostgreSQL, MySQL, EC2, boto3).
+    \item \blead{Data lake}architected and prototyped a decentralized data lake querying compressed SQLite files on S3 through massively parallel AWS Lambda invocations, and wrote a Multicorn foreign data wrapper exposing it through a standard PostgreSQL interface, so it could be queried like any other data system (AWS lambda, python, SQLite, PostgreSQL).
 \end{bullets}
 
 
@@ -106,17 +104,17 @@
 % todo, how should this be formatted
 % fix type hints for cachetools https://github.com/python/typeshed/pull/5440
 
-\mysubhead{\href{https://github.com/pypa/pip}{Python Package Installer -- Pip}}
+\mysubhead{\href{https://github.com/pypa/pip}{Python packaging --- pip and packaging}}
 
 \begin{bullets}
-    \item Up to 10x improved performance of package version resolution (\href{https://github.com/pypa/pip/pull/9748}{pull request}).
-    \item 2x performance increase in comparison of tag objects (\href{https://github.com/pypa/packaging/pull/417}{pull request}).
+    \item \blead{Candidate selection}replaced a linear scan of the supported tag list with a precomputed index lookup, cutting best-candidate selection 11x in profiling, from 68s to 6.2s over 30 calls (\href{https://github.com/pypa/pip/pull/9748}{pull request}).
+    \item \blead{Tag equality}short-circuited tag comparison on a cached hash. Comparing tags accounted for two thirds of the time spent picking a candidate; it got 2.5x faster and nearly halved the operation overall (\href{https://github.com/pypa/packaging/pull/417}{pull request}).
 \end{bullets}
-These changes decreased the time spent on pip steps as part of ci process (at Kensho).
+Together these cut the time spent on pip steps in ci (at Kensho).
 
 \mysubhead{\href{https://github.com/php/php-src}{PHP}}
-Avoided roundtrip to database in order to get column type for most common datatypes (\href{https://github.com/php/php-src/pull/1534}{pull request}).
-This decreased the number of queries run as well as page load time by more than an order of magnitude in some cases (at Moat).
+Removed a per-column roundtrip to the database in PDO's PostgreSQL driver, resolving the common type OIDs directly instead of querying for each one (\href{https://github.com/php/php-src/commit/e10257ba8069fb982d9cd8681f6633de9fea534d}{commit}).
+Shipped in PHP since 2015; the saving scales with the width of the result set, and at Moat it cut queries and page load time by more than an order of magnitude on the user administration pages.
 
 \mysubhead{\href{https://gitlab.gnome.org/GNOME/shotwell}{Gnome Shotwell Photo Manager}}
 47 commits from 2013 to 2021, across the import pipeline, thumbnail cache, saved searches, publishing plugins and build system (vala).
