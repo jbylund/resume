@@ -1,0 +1,43 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%     Held bullets -- written, verified, not currently included     %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Nothing here is \input by the document. This file exists so that work drafted and
+% fact-checked once does not have to be drafted and fact-checked again -- the same reason
+% publications.tex sits behind an \iffalse rather than being deleted.
+%
+% To use one: paste it into the matching \begin{bullets} block in mycontents.tex, then
+% re-measure \scalepct. The page budget is the binding constraint, not the writing.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% SYLVAN LIBRARIAN -- text search prefilter (sylvan_librarian#622)
+%
+% Why it is held, not included: at the time of writing the resume sits at \scalepct 96
+% with the last page 99% full. Adding this bullet alone needs 93 (3 pages, 96% full),
+% which puts body text at 9.3pt. Removing the two weakest Columbia bullets instead lets
+% it fit at 95. Measured 18 Aug 2026; re-measure before trusting these numbers.
+%
+% Every figure below is checked against the pull request body:
+%   52k per-row comparisons over 26.3k distinct values ...... "52k contains calls over
+%                                                              only 26.3k distinct texts"
+%   128-bit n-gram signature ............................... "128-bit learned fingerprint",
+%                                                              1/2/3-grams
+%   rejects 97% of candidates .............................. "Held-out geomean pass: 3.0%"
+%   15x bare / 8x on the OR case ........................... ft:dream 1.441 -> 0.096 ms;
+%                                                              (o:flying or ft:dream)
+%                                                              2.336 -> 0.293 ms
+%   ~1MB of index vs 5--9MB for trigram .................... "~1.0 MB archive (71.6 -> 72.6
+%                                                              MB) ... vs. the ~5-9 MB
+%                                                              trigram index"
+%
+% Two claims from an earlier draft were dropped as unsupported: "skips ~98% of candidates"
+% (the pass rate is 3.0%, so 97%) and "0.4 MB vs 5--9 MB" (0.4MB is the fingerprint array
+% alone; the whole structure costs ~1MB, and comparing one component against the
+% alternative's total flatters it by about 2.5x).
+%
+% Stated in column/row terms rather than the game's, for the same reason as the arithmetic
+% index bullet: described as flavor text and printings it reads as a card project,
+% described as a text column and rows it reads as the search engineering it is.
+
+    \item \blead{Text search prefilter}the last unindexed text column was matched per row --- 52k string comparisons over only 26.3k distinct values --- and could never narrow, so a single such predicate voided OR narrowing for an entire query. Resolved it once against the distinct values behind a 128-bit n-gram signature rejecting 97\% of candidates, then expanded matches back to rows through a CSR inverted index: 15x on a bare predicate and 8x on the OR combination that motivated the work, for {\mytilde}1MB of index against 5--9MB for a trigram alternative (rust, \href{https://github.com/jbylund/sylvan_librarian/pull/622}{pull request}).
