@@ -1,63 +1,97 @@
-# Joe Bylund's Resume
+# Joe Bylund
 
-[joseph.bylund@gmail.com](mailto:joseph.bylund+resume@gmail.com?subject=Resume%20from%20Github)  
-[resume](https://github.com/jbylund/resume/raw/main/joseph_bylund.pdf)  
+Lead Software Engineer — Boston, MA
 
-# Previous Employment
+[joseph.bylund@gmail.com](mailto:joseph.bylund+resume@gmail.com?subject=Resume%20from%20Github)
+· [resume (pdf)](https://github.com/jbylund/resume/raw/main/joseph_bylund.pdf)
 
-## Altana
-[Altana](https://altana.ai/) - ai powered solutions for shipping/logistics/customs/government - supply chain intelligence  
-Spring 2022 - Summer 2023  
-* Business network discovery and traversal - built tools to construct business networks from graph of world
-wide shipment data.
-* Search microservice - Built search microservice for companies, facilities and transactions in the Altana atlas using FastAPI, Pydantic, ArangoDB.
-* Arango client library - built http client for ArangoDB supporting synchronous and asynchronous requests
-used in search mircoservice.
-* Spark client library - shimmed three different client libraries (pyspark, pyhive, databricks-sql-connector) to
-pep-249 interface, supports creation of business networks.
-* Geocoding client - wrote geocoding client library which handles address pre-processing and http requests to a pelias service. Built tooling to measure geocoding accuracy over time.
-* Geocoding pipeline - built continuous address geocoding pipeline and geocoded the ~400 million addresses in the Altana atlas.
+# Experience
 
+## Klaviyo — Lead Software Engineer
+Boston, MA · August 2023 - Present
 
-## Kensho
-[Kensho](https://kensho.com/) - ai solutions for the financial industry  
-Summer 2018 - Spring 2022
+* **Purchase containment filtering** - designed a bloom filter architecture replacing repeated large-scale ClickHouse scans, bulk-streaming (person, item) pairs into Redis. Reduced data scanned by ~1000x on a path accounting for ~1/3 of total ClickHouse cluster load. Sketched the design for a partner team and shepherded them through implementation (ClickHouse, Redis, python).
+* **Information schema as a service** - prototyped a SQL interface over multi-tenant, schema-on-read JSON data, and later rejoined the team that productionized it. Built the manifest service translating user-supplied SQL into queries against JSON-backed tables, giving customers a typed SQL API over untyped storage. Cut manifest resolution latency 3x end to end (python, gRPC, MySQL, StarRocks).
+* **Query service** - founding engineer on a gRPC query service over multi-tenant event data: interceptor stack (rate limiting, validation, concurrency limiting, slow-request logging), sharded connection pooling, executors for ClickHouse, PostgreSQL and MySQL, and query rewriting (python, gRPC, ClickHouse, PostgreSQL, MySQL).
+* **Metrics service performance** - added profiling instrumentation, then optimized query mapping and result processing, reducing latency ~58% across every request the service serves (python, gRPC, ClickHouse).
+* **Custom objects** - built gRPC APIs letting customers define schemas for their own objects, with per-company partitioned rate limiting and a shared Redis Sentinel client, modeled as data vault hubs, links and satellites (python, gRPC, Redis, Pulsar).
+* **Developer velocity** - parallelized test containers, added CI cache targets, and built local development environments used across teams.
+
+## Altana — Senior Software Engineer
+New York City (Remote) · March 2022 - June 2023
+
+* **Business network discovery and traversal** - built tools to construct business networks from graph of world wide shipment data.
+* Built search microservice for companies, facilities and transactions using FastAPI, Pydantic, ArangoDB.
+* **Arango client library** - built http client for ArangoDB supporting synchronous and asynchronous requests used in search microservice.
+* **Spark client library** - shimmed three different client libraries (pyspark, pyhive, databricks-sql-connector) to pep-249 interface, supports creation of business networks.
+* **Geocoding client** - writing api client, measuring and improving accuracy, building pipeline.
+* **Geocoding pipeline** - built continuous address geocoding pipeline and geocoded ~400 million addresses.
+
+## Kensho — Data Engineer
+Cambridge, MA · 2018 - March 2022
 
 * Designed and implemented multi-step document processing pipeline using multiple in-house ML services.
 * Designed and built speech-to-text alignment pipeline using SQS & gentle forced aligner.
 * Implemented a number of checks in github hooks (pylint, flake8, mypy...), improving the developer experience.
 * Migrated fuzzy company identification service to kubernetes and optimized performance.
 
-## Moat / Oracle
-[Moat](https://www.oracle.com/cx/advertising/measurement/) - Advertising analytics for advertisers and publishers  
-Fall 2013 - Summer 2018  
+## Moat — Senior Data Scientist & Back-end Engineer
+New York, NY · 2013 - 2018
 
-* Designed and implemented distributed, fault-tolerant ETL, reducing cost by an order of magnitude, increasing reliability, and reducing processing time from ~10 hours to ~1 hour, making data available to clients far earlier in the day (using python, SQS, Redis, PostgreSQL).
-* Numerous data-driven API improvements which lead to 3-4x improvement in API latency as well as maximum request size (PHP, CakePHP).
-* Contributed improvements to ORM (CakePHP) and [PHP postgres driver](https://github.com/php/php-src/pull/1534) in order to reduce the number of queries necessary to render a page by 5x (decreasing page load time by ~3x) (CakePHP, c).
-* Standardized deployment framework used to deploy thousands of servers of ~30 different roles to AWS (AWS, EC2, boto3).
-* Migrated primary non-statistical database (users, accounts, metadata) from MySQL to PostgreSQL, improving uptime & flexibility (MySQL, PostgreSQL, foreign data wrappers).
-* Migrated primary statistical database (500 million rows/day) from non-first normal form to first normal form schema, improving query latency, reducing storage demands, and increasing throughput.
-* Architected and implemented sophisticated message routing system which is responsible for moving ~40 billion events per day from pixel servers to real-time processing servers while balancing CPU and memory constraints (c++).
-* Architected and prototyped massively parallel decentralized data lake using AWS lambda and S3 for cost-effective storage and low-latency and cost-effective queries (AWS lambda, python, PostgreSQL)
+* **Distributed ETL** - designed and built a fault-tolerant pipeline, cutting cost by an order of magnitude and processing time from ~10 hours to ~1 hour, so data reached clients far earlier in the day (python, SQS, Redis, PostgreSQL).
+* **Event routing** - routed ~40 billion events per day from pixel servers into real-time processing, sharding by client, by configurable key and by session, so that one client's traffic could not degrade another's and data arrived pre-aggregated, leaving the ETL far less to merge (c++).
+* **Statistical database** - migrated the primary statistical store (500 million rows/day) from non-first to first normal form, improving query latency and throughput while reducing storage demands.
+* **Stats API performance** - sped up the primary statistics routes clients called for reporting and exports, cutting latency ~3x and raising the maximum request size through profiling-guided work on serialization and the query paths behind them (PHP, CakePHP).
+* **Platform** - migrated users, accounts and metadata from MySQL to PostgreSQL with zero downtime, bridging the two through a MySQL foreign data wrapper during the cutover, and standardized the deployment framework running thousands of servers across ~30 roles on AWS (PostgreSQL, MySQL, EC2, boto3).
+* **Data lake** - architected and prototyped a decentralized data lake querying compressed SQLite files on S3 through massively parallel AWS Lambda invocations, and wrote a Multicorn foreign data wrapper exposing it through a standard PostgreSQL interface, so it could be queried like any other data system (AWS lambda, python, SQLite, PostgreSQL).
+
+# Projects
+
+* [**Sylvan Librarian**](https://sylvan-librarian.com/) ([source](https://github.com/jbylund/sylvan_librarian)) - open source Magic: The Gathering card search engine in rust, implementing Scryfall's query syntax and extending it with arithmetic expressions. Self-hosted with blue/green deploys behind nginx; independently forked and deployed to Cloudflare Workers by an outside contributor (rust, python).
+* [**pg_mimic**](https://github.com/jbylund/pg_mimic) - pure-python asyncio implementation of the PostgreSQL wire protocol, letting any python process present a postgres interface to standard clients rather than a bespoke http api. Verified against psycopg, asyncpg, pg8000 and psql (python, asyncio).
+
+# Open Source Contributions
+
+### [Python packaging - pip and packaging](https://github.com/pypa/pip)
+
+* **Candidate selection** - replaced a linear scan of the supported tag list with a precomputed index lookup, cutting best-candidate selection 11x in profiling, from 68s to 6.2s over 30 calls ([pull request](https://github.com/pypa/pip/pull/9748)).
+* **Tag equality** - short-circuited tag comparison on a cached hash. Comparing tags accounted for two thirds of the time spent picking a candidate; it got 2.5x faster and nearly halved the operation overall ([pull request](https://github.com/pypa/packaging/pull/417)).
+
+Together these cut the time spent on pip steps in ci (at Kensho).
+
+### [Gnome Shotwell Photo Manager](https://gitlab.gnome.org/GNOME/shotwell)
+
+47 commits from 2013 to 2021, across the import pipeline, thumbnail cache, saved searches, publishing plugins and build system (vala).
+
+* **Import throughput** - reworked thumbnail generation to decode each photo once and derive every thumbnail size from that single decode, rather than decoding once per size ([commit](https://gitlab.gnome.org/GNOME/shotwell/-/commit/3a424909653f77e1e337ac3e1aad803b49f04942)).
+* **RAW metadata** - cached metadata on the RAW reader so a file is parsed once per import instead of on every access ([commit](https://gitlab.gnome.org/GNOME/shotwell/-/commit/979f26a1347b39461722e9c9ef15caa6285b6b9f)).
+
+### [PHP](https://github.com/php/php-src)
+
+Removed a per-column roundtrip to the database in PDO's PostgreSQL driver, resolving the common type OIDs directly instead of querying for each one ([commit](https://github.com/php/php-src/commit/e10257ba8069fb982d9cd8681f6633de9fea534d)). Shipped in PHP since 2015; the saving scales with the width of the result set, and at Moat it cut queries and page load time by more than an order of magnitude on the user administration pages.
 
 # Education
 
-## PhD Columbia University
-2007 - 2013
+## Columbia University
+New York, NY · 2007 - 2013
 
 PhD - Integrated Program In Cellular, Molecular and Biomedical Studies
+
 Thesis: [Monte-Carlo Sampling of Protein-Ligand Interactions and Computational Improvements to Implicit Solvent Models](https://academiccommons.columbia.edu/doi/10.7916/D80G3H7B)
 
-* Led development and maintenance of Protein Local Optimization Program (PLOP) project, a molecular mechanics library for protein structure prediction (fortran).
-* Designed and implemented the computational mutation scanning module of PLOP.
-* Redesigned build system to automatically determine dependencies and take advantage of parallel compilation, reducing build time from ~30 minutes to ~3 minutes and accelerating development.
-* Created a small molecule database representing 95%+ of small molecules in the Protein Data Bank, extending PLOP from a protein-only program to a general molecular mechanics toolkit.
-* Designed and implemented a Perl based automated regression testing framework, which accelerated development while minimizing bugs and regressions.
-* Created a project wiki, combining scattered documentation and completing missing documentation.
+* **PLOP** - led development and maintenance of the Protein Local Optimization Program, a molecular mechanics library for protein structure prediction, and wrote its computational mutation scanning module (fortran).
+* **Build system** - redesigned it to automatically determine dependencies and take advantage of parallel compilation, reducing build time from ~30 minutes to ~3 minutes and accelerating development.
+* **Small molecule database** - built a database representing 95%+ of small molecules in the Protein Data Bank, extending PLOP from a protein-only program to a general molecular mechanics toolkit.
+* **Regression testing** - built a Perl based automated test framework, which accelerated development while minimizing bugs and regressions.
 
-## Undergraduate Rice University
-2003 - 2007
+## Rice University
+Houston, TX · 2003 - 2007
 
-# Skills
+Bachelor of Arts - Mathematics  
+Bachelor of Science - Ecology and Evolutionary Biology
 
+# Technologies & Skills
+
+* **Languages** - Python, SQL, rust, C++
+* **Data stores** - ClickHouse, PostgreSQL, MySQL, StarRocks, Redis, ArangoDB; previously Vertica, Redshift
+* **Platform** - AWS (EC2, S3, RDS, Lambda, DynamoDB), Kubernetes, gRPC; Kafka, Pulsar, SQS, Kinesis, RabbitMQ
