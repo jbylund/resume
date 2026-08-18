@@ -44,25 +44,40 @@ jobs:
         env:
           APT_OPTS: -o Acquire::Retries=3 -o Dpkg::Use-Pty=0
         run: |
-          # The runners point apt at azure.archive.ubuntu.com. That mirror stalled
-          # on three consecutive runs, each one burning the whole step budget, so
-          # use the canonical archive instead. 24.04 keeps its sources in the
-          # deb822 file; the older path is listed too in case the image changes.
-          sudo sed -i 's|https\?://azure.archive.ubuntu.com/ubuntu|http://archive.ubuntu.com/ubuntu|g' \
-            /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list 2>/dev/null || true
-          echo "apt mirrors in use:"
-          grep -rhoE 'https?://[^ ]*ubuntu[^ ]*' \
-            /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list 2>/dev/null | sort -u | sed 's/^/  /'
+          # The runners resolve apt through a mirrorlist -- ubuntu.sources says
+          # "URIs: mirror+file:/etc/apt/apt-mirrors.txt" -- and that list starts with
+          # azure.archive.ubuntu.com, which stalled on four consecutive runs. Rewrite
+          # the list itself; editing ubuntu.sources does nothing, because no plain
+          # mirror URL appears there.
+          echo 'http://archive.ubuntu.com/ubuntu/' | sudo tee /etc/apt/apt-mirrors.txt >/dev/null
+          echo "apt mirror list:"; sed 's/^/  /' /etc/apt/apt-mirrors.txt
 
           sudo apt-get $APT_OPTS update -qq
-          # xetex: xelatex, fontspec, geometry, hyperref, xcolor; fonts-lato: the
-          # Lato TTFs \setmainfont needs. Everything else (enumitem, datetime,
-          # pzdr.tfm) is vendored in texmf/, which keeps texlive-latex-extra,
-          # -fonts-extra and -fonts-recommended -- 834MB of downloads -- out of
-          # this job. See texmf/README.md.
+          # xetex: xelatex, fontspec, geometry, hyperref, xcolor -- and, through its
+          # dependencies, texlive-latex-extra. fonts-lato: the TTFs \setmainfont
+          # needs. Vendoring pzdr.tfm and ulem.sty in texmf/ keeps
+          # texlive-fonts-recommended and texlive-plain-generic out of the job; the
+          # other vendored files ride along with latex-extra regardless and are kept
+          # for local builds on a minimal TeX Live. See texmf/README.md.
           # poppler-utils supplies pdfinfo/pdftotext for the length check below
+          # texlive's postinstall precompiles a format for every engine on the
+          # system: 53 of the 90 seconds this step takes. This document needs one,
+          # xelatex, which takes about 3 seconds. Divert the binary to a no-op for
+          # the duration of the install, then build that single format by hand.
+          #
+          # Divert fmtutil, not fmtutil-sys: tex-common's postinst runs
+          #   FMTUTIL="fmtutil --sys --strict --no-error-if-no-engine=..."
+          # so diverting the -sys wrapper misses it entirely, which is exactly the
+          # mistake the previous attempt made.
+          sudo dpkg-divert --local --rename --add /usr/bin/fmtutil
+          sudo ln -sf /bin/true /usr/bin/fmtutil
+
           sudo DEBIAN_FRONTEND=noninteractive apt-get $APT_OPTS install -y --no-install-recommends \
             texlive-xetex fonts-lato poppler-utils
+
+          sudo rm -f /usr/bin/fmtutil
+          sudo dpkg-divert --local --rename --remove /usr/bin/fmtutil
+          sudo fmtutil-sys --byfmt xelatex
 
       - name: Build PDF
         run: |
