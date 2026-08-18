@@ -1,153 +1,27 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%     Header       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%     Document order     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% The prose lives in sections/; this file is only the order. Reorder these lines to
+% reorder the resume.
+%
+% Order here is editorial, not chronological, which is why the filenames carry no numeric
+% prefix: Rice sits after Columbia, Sylvan Librarian before the older pg_mimic, and the
+% Sylvan bullets run strongest-first with the parser last despite being written first. A
+% numbering scheme would encode a rule this document does not follow.
+%
+% Each \input ends in %, commenting out the newline that would otherwise follow it, so the
+% token stream is byte-identical to the single file this replaced. Verified: same build
+% machine, before and after, 1572 words identical in text and position. Dropping the % is
+% probably harmless -- the extra newlines land in vertical mode, where they collapse -- but
+% identical beats probably.
 
-
-
-\myheader{Joe Bylund}{\href{mailto:joseph.bylund+resume@gmail.com}{joseph.bylund@gmail.com}}{347-829-5863}{Boston, MA}{%
-    \href{https://github.com/jbylund}{github.com/jbylund} \; \textbullet \;
-    \href{https://www.linkedin.com/in/josephbylund/}{linkedin.com/in/josephbylund} \; \textbullet \;
-    \href{https://jbylund.github.io/}{jbylund.github.io}}
-
-\mysection{Experience}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%    Klaviyo    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\myjob{Klaviyo}{Boston, MA}{Lead Software Engineer}{August 2023 --- Present}
-
-\begin{bullets}
-    \item \blead{Purchase containment filtering}designed a bloom filter architecture replacing repeated large-scale ClickHouse scans, bulk-streaming (person, item) pairs into Redis. Reduced data scanned by {\mytilde}1000x on a path accounting for {\mytilde}1/3 of total ClickHouse cluster load. Sketched the design for a partner team and shepherded them through implementation (ClickHouse, Redis, python).
-    \item \blead{Information schema as a service}prototyped a SQL interface over multi-tenant, schema-on-read JSON data, and later rejoined the team that productionized it. Built the manifest service translating user-supplied SQL into queries against JSON-backed tables, giving customers a typed SQL API over untyped storage. Cut manifest resolution latency 3x end to end (python, gRPC, MySQL, StarRocks).
-    \item \blead{Query service}founding engineer on a gRPC query service over multi-tenant event data: interceptor stack (rate limiting, validation, concurrency limiting, slow-request logging), sharded connection pooling, executors for ClickHouse, PostgreSQL and MySQL, and query rewriting (python, gRPC, ClickHouse, PostgreSQL, MySQL).
-    \item \blead{Metrics service performance}added profiling instrumentation, then optimized query mapping and result processing, reducing latency {\mytilde}58\% across every request the service serves (python, gRPC, ClickHouse).
-    \item \blead{Custom objects}built gRPC APIs letting customers define schemas for their own objects, with per-company partitioned rate limiting and a shared Redis Sentinel client, modeled as data vault hubs, links and satellites (python, gRPC, Redis, Pulsar).
-    \item \blead{Developer velocity}parallelized test containers, added CI cache targets, and built local development environments used across teams.
-\end{bullets}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%   Altana    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\myjob{Altana}{New York City (Remote)}{Senior Software Engineer}{March 2022 --- June 2023}
-
-\begin{bullets}
-    \item \blead{Business network discovery and traversal}built the tools constructing business networks from a graph of worldwide shipment data (python).
-    \item \blead{Search service}built the search microservice for companies, facilities and transactions in Altana's Atlas, and the two libraries under it: a synchronous and asynchronous ArangoDB http client, and a query layer composing logical filters into AQL (python, FastAPI, Pydantic, ArangoDB).
-    \item \blead{Spark client library}shimmed three client libraries (pyspark, pyhive, databricks-sql-connector) to one pep-249 interface, so network construction could run against any of them.
-    \item \blead{Geocoding}built a continuous pipeline and the client under it --- address pre-processing, requests to a Pelias service, and tooling tracking match accuracy over time --- geocoding the {\mytilde}400 million addresses in Altana's Atlas (python, Pelias).
-\end{bullets}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%   Kensho    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\myjob{Kensho}{Cambridge, MA}{Software Engineer}{September 2018 --- March 2022}
-
-\begin{bullets}
-    \item \blead{Document processing}designed and built a multi-step pipeline orchestrating several in-house ML services (python).
-    \item \blead{PDF extraction performance}the extractor held pages in a memory-efficient form that the pipeline then mutated heavily. Wrapped the hot path in a conversion to a mutable representation and back, invisible to every caller and with no test changed, cutting the worst documents from 30--60 minutes to 1--2 minutes (python).
-    \item \blead{Neighbour search}applied spatial hashing to an element-to-element distance search, comparing only the same and adjacent cells rather than every pair (python).
-    \item \blead{Speech-to-text alignment}built the pipeline aligning earnings call transcripts to audio with the gentle forced aligner (python, SQS).
-    \item \blead{Entity resolution}migrated the entity resolution service to kubernetes, then profiled and parallelized it for a {\mytilde}3x speedup (python, kubernetes).
-    \item \blead{Developer experience}added pylint, flake8 and mypy checks to github hooks.
-\end{bullets}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%     Moat    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\myjob{Moat}{New York, NY}{Senior Backend Engineer \& Data Scientist}{September 2013 --- September 2018}
-
-\begin{bullets}
-    \item \blead{Distributed ETL}designed and built a fault-tolerant pipeline, cutting cost by an order of magnitude and processing time from {\mytilde}10 hours to {\mytilde}1 hour, so data reached clients far earlier in the day (python, SQS, Redis, PostgreSQL).
-    \item \blead{Event routing}routed {\mytilde}40 billion events per day from pixel servers into real-time processing, sharding by client, by configurable key and by session, so that one client's traffic could not degrade another's and data arrived pre-aggregated, leaving the ETL far less to merge (c++).
-    \item \blead{Statistical database}migrated the primary statistical store (500 million rows/day) from non-first to first normal form, improving query latency and throughput while reducing storage demands.
-    \item \blead{Stats API performance}sped up the primary statistics routes clients called for reporting and exports, cutting latency {\mytilde}3x and raising the maximum request size through profiling-guided work on serialization and the query paths behind them (PHP, CakePHP).
-    \item \blead{Platform}migrated users, accounts and metadata from MySQL to PostgreSQL with zero downtime, bridging the two through a MySQL foreign data wrapper during the cutover, and standardized the deployment framework running thousands of servers across {\mytilde}30 roles on AWS (PostgreSQL, MySQL, EC2, boto3).
-    \item \blead{Data lake}architected and prototyped a decentralized data lake querying compressed SQLite files on S3 through massively parallel AWS Lambda invocations, and wrote a Multicorn foreign data wrapper exposing it through a standard PostgreSQL interface, so it could be queried like any other data system (AWS lambda, python, SQLite, PostgreSQL).
-\end{bullets}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%    Projects    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\mysection{Projects}
-% A fourth Sylvan Librarian bullet (text search prefilter, sylvan_librarian#622) is
-% written and fact-checked in held_bullets.tex. It is out because it costs three points
-% of \scalepct on its own, or one with the two weakest Columbia bullets removed -- not
-% because anything in it is wrong.
-
-\mysubhead{Sylvan Librarian (\href{https://sylvan-librarian.com/}{sylvan-librarian.com}, \href{https://github.com/jbylund/sylvan_librarian}{source})}
-Open source Magic: The Gathering card search engine in rust, implementing Scryfall's query syntax --- a query engine with its own parser, cost based planner and execution engine. Self-hosted with blue/green deploys behind nginx; independently forked to Cloudflare Workers by an outside contributor.
-\begin{bullets}
-    \item \blead{Cost based query planner}plan selection was a hand-maintained decision tree of nested conditions and tuned constants spread through the call graph, so adding a plan meant renegotiating every branch. Replaced it with one cost model over exact counts (plane popcounts, partition-point widths, posting lengths) rather than cardinality estimates: the fastest plan on 87 of 88 calibration queries, throughput unchanged, and plan work tractable afterwards (rust, \href{https://github.com/jbylund/sylvan_librarian/pull/712}{pull request}).
-    \item \blead{In-process query engine}replaced the PostgreSQL search path with an in-memory rust/PyO3 filter engine over 96k cards, {\mytilde}76x faster on a geometric mean of representative queries (0.20ms vs 14.9ms), taking the database out of the
-hot path (rust, PyO3, \href{https://github.com/jbylund/sylvan_librarian/pull/490}{pull request}).
-    \item \blead{Arithmetic expression index}arbitrary arithmetic over four integer attributes (a+b<k) had no narrowing path and scanned every row. Those attributes take only {\mytilde}564 distinct combinations across 31.5k rows, so the index evaluates the predicate against the combinations rather than the rows and unions the matching postings --- exact, 4.15x geometric mean on affected queries, 135KB of index (rust, \href{https://github.com/jbylund/sylvan_librarian/pull/750}{pull request}).
-    \item \blead{Query parser}hand-rolled a recursive descent parser for the full query language, {\mytilde}49x faster than the pyparsing grammar it replaced (158k vs 3.2k parses/sec), with a 133 case parity suite asserting both emit identical SQL (python, \href{https://github.com/jbylund/sylvan_librarian/pull/482}{pull request}).
-\end{bullets}
-
-\mysubhead{\href{https://github.com/jbylund/pg_mimic}{pg\_mimic}}
-Pure-python asyncio implementation of the PostgreSQL wire protocol, letting any python process present a postgres interface to standard clients rather than a bespoke http api. Verified against psycopg, asyncpg, pg8000 and psql (python, asyncio).
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%    Columbia    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\mysection{Open Source Contributions}
-
-\mysubhead{\href{https://github.com/pypa/pip}{Python packaging --- pip and packaging}}
-
-\begin{bullets}
-    \item \blead{Candidate selection}replaced a linear scan of the supported tag list with a precomputed index lookup, cutting best-candidate selection 11x in profiling, from 68s to 6.2s over 30 calls (\href{https://github.com/pypa/pip/pull/9748}{pull request}).
-    \item \blead{Tag equality}short-circuited tag comparison on a cached hash. Comparing tags accounted for two thirds of the time spent picking a candidate; it got 2.5x faster and nearly halved the operation overall (\href{https://github.com/pypa/packaging/pull/417}{pull request}).
-\end{bullets}
-Together these cut the time spent on pip steps in ci (at Kensho).
-
-\mysubhead{\href{https://github.com/python/typeshed}{Python typeshed}}
-Widened the cachetools stubs, where cache sizes were typed as integers although a custom \mbox{getsizeof} may return any number, so correctly typed code using fractional sizes failed type checking (\href{https://github.com/python/typeshed/pull/5440}{pull request}).
-
-\mysubhead{\href{https://gitlab.gnome.org/GNOME/shotwell}{Gnome Shotwell Photo Manager}}
-47 commits from 2013 to 2021, across the import pipeline, thumbnail cache, saved searches, publishing plugins and build system (vala).
-\begin{bullets}
-    \item \blead{Import throughput}reworked thumbnail generation to decode each photo once and derive every thumbnail size from that single decode, rather than decoding once per size (\href{https://gitlab.gnome.org/GNOME/shotwell/-/commit/3a424909653f77e1e337ac3e1aad803b49f04942}{commit}).
-    \item \blead{RAW metadata}cached metadata on the RAW reader so a file is parsed once per import instead of on every access (\href{https://gitlab.gnome.org/GNOME/shotwell/-/commit/979f26a1347b39461722e9c9ef15caa6285b6b9f}{commit}).
-\end{bullets}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%    Other          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\mysubhead{\href{https://github.com/php/php-src}{PHP}}
-Removed a per-column roundtrip to the database in PDO's PostgreSQL driver, resolving the common type OIDs directly instead of querying for each one (\href{https://github.com/php/php-src/commit/e10257ba8069fb982d9cd8681f6633de9fea534d}{commit}).
-Shipped in PHP since 2015; the saving scales with the width of the result set, and at Moat it cut queries and page load time by more than an order of magnitude on the user administration pages.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\mysection{Education}
-
-\myjob{Columbia University}{New York, NY}{PhD -- Computational Chemistry}{2007 --- 2013}
-
-\mylead{Thesis:} Monte-Carlo Sampling of Protein-Ligand Interactions and Computational Improvements to Implicit Solvent Models\\
-
-\begin{bullets}
-    \item \blead{PLOP}led development and maintenance of the Protein Local Optimization Program, a molecular mechanics library for protein structure prediction, and wrote its computational mutation scanning module (fortran).
-    \item \blead{Build system}redesigned it to automatically determine dependencies and take advantage of parallel compilation, reducing build time from {\mytilde}30 minutes to {\mytilde}3 minutes and accelerating development.
-    \item \blead{Small molecule database}built a database representing 95\%+ of small molecules in the Protein Data Bank, extending PLOP from a protein-only program to a general molecular mechanics toolkit.
-    \item \blead{Regression testing}built a Perl based automated test framework, which accelerated development while minimizing bugs and regressions.
-\end{bullets}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%    Rice    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\clearpage
-
-\myjob{Rice University}{Houston, TX}{Bachelor of Arts -- Mathematics}{2003 --- 2007}
-\mysubline{Bachelor of Science -- Ecology and Evolutionary Biology}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%    Open Source   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\mysection{Technologies \& Skills}
-\begin{bullets}
-    \item \blead{Languages}Python, SQL, rust, C++
-    \item \blead{Data stores}ClickHouse, PostgreSQL, MySQL, StarRocks, Redis, ArangoDB; previously Vertica, Redshift
-    \item \blead{Platform}AWS (EC2, S3, RDS, Lambda, DynamoDB), Kubernetes, gRPC; Kafka, Pulsar, SQS, Kinesis, RabbitMQ
-\end{bullets}
+\input{sections/header}%
+\input{sections/experience}%
+\input{sections/projects}%
+\input{sections/open_source}%
+\input{sections/education}%
+\input{sections/skills}%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Publications    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
