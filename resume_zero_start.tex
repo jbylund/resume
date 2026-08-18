@@ -1,80 +1,150 @@
-\documentclass[letterpaper,12pt]{article}
-
-\setlength{\parindent}{0in}
-\usepackage[margin=0.8in]{geometry}
-\usepackage{calc}
-\usepackage{xfrac}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%     Style: Lato, monochrome, headed sections    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% All styling lives here; mycontents.tex holds only content, marked up with the
+% semantic macros defined below (\myjob, \mysection, \mysubhead, bullets...).
+%
+% Set entirely in black: hierarchy comes from size, weight, italics, spaced
+% capitals and rules rather than colour.
+%
+\documentclass[letterpaper,11pt]{article}
+\usepackage[margin=0.72in]{geometry}
 \usepackage{enumitem}
-\usepackage{textcomp}
-\usepackage{DejaVuSans}
-\usepackage{datetime}
+\usepackage{datetime}   % \monthname in the "Last updated" line
 \usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage[normalem]{ulem}   % \uline, for link underlines that survive line breaks
 \usepackage{hyperref}
 
-\hypersetup{%
-  colorlinks      = true, %Colours links instead of ugly boxes
-  %citecolor       = [rgb]{0.0, 0.0, 0.65}, %Colour of citations
-  %linkcolor       = [rgb]{0.0, 0.0, 0.65}, %Colour of internal links
-  urlcolor        = [rgb]{0.0, 0.0, 0.65}, %Colour for external hyperlinks
-  urlbordercolor  = [rgb]{0.0, 0.0, 0.65},
-}
+% Lato: narrower than DejaVu Sans, so it fits more words per line at a given size.
+% Provided by the fonts-lato package (Debian/Ubuntu) or the Lato cask (macOS).
+%
+% Ligatures=TeX is what turns `---` into an em dash and `` '' into curly quotes.
+% Stated explicitly rather than relying on the font: not every face carries the
+% feature, and without it date ranges print a literal `---`.
+\setmainfont{Lato}[Numbers=Lining, Ligatures=TeX]
+
+\definecolor{ink}{HTML}{000000}
+% monochrome: give muted/accent their own hex here to reintroduce a second tone
+\colorlet{muted}{ink}
+\colorlet{accent}{ink}
+% links are the one deliberate exception to the all-black setting -- the projects
+% and open-source sections are evidence, so they need to read as clickable
+\definecolor{link}{HTML}{1F4E79}
+
+\hypersetup{colorlinks=true, urlcolor=link, linkcolor=link, pdfborder={0 0 0}}
+
+% underline every link, in addition to colouring it. Assumes the two-argument
+% \href{url}{text} form, which is the only one this document uses.
+\let\hrefnoline\href
+\renewcommand{\href}[2]{\hrefnoline{#1}{\uline{#2}}}
+\color{ink}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+\raggedright
+\linespread{1.06}
+
+%%% Type scale %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% One knob for the whole document, as a percentage. Every size below is stated at
+% its 100% value and scaled through \sz, so this is the only number to touch when
+% the content grows or shrinks and the last page needs refilling.
+%
+% Raising this makes the text bigger AND the measure shorter (fewer characters per
+% line), so pages fill faster than the percentage suggests. Measured against the
+% current content:
+%
+%   100%  ->  3 pages, last page 83% full
+%   104%  ->  3 pages, last page 98% full   <-- current setting
+%   105%  ->  spills onto a 4th page
+%
+% So 104% is deliberately close to the edge: there is about one line of headroom.
+% If you add a bullet and the PDF grows to 4 pages, drop this to 103 (92% full,
+% roughly four lines of slack) rather than editing individual sizes.
+\newcommand{\scalepct}{104}
+\newcommand{\sz}[2]{%
+  \fontsize{\the\dimexpr#1pt*\scalepct/100\relax}%
+           {\the\dimexpr#2pt*\scalepct/100\relax}\selectfont}
 
 \makeatletter
-\Hy@AtBeginDocument{%
-  \def\@pdfborder{0 0 1}% Overrides border definition set with colorlinks=true
-  \def\@pdfborderstyle{/S/U/W 1}% Overrides border style set with colorlinks=true
-                                % Hyperlink border style will be underline of width 1pt
-}
+% \needlines{n} -- keep n lines' worth of space with what follows, else break
+% before it, so a heading is never stranded at the foot of a page. This is
+% needspace.sty's definition, inlined to avoid pulling in texlive-latex-extra
+% for one macro.
+\newcommand{\needlines}[1]{%
+  \begingroup
+    \setlength{\dimen@}{#1}%
+    \vskip\z@\@plus\dimen@
+    \penalty-100
+    \vskip\z@\@plus-\dimen@
+    \vskip\dimen@
+    \penalty9999
+    \vskip-\dimen@
+    \vskip\z@skip
+  \endgroup}
 \makeatother
 
-\newlength{\littleskip}
-\setlength{\littleskip}{1ex}
-
-\newlength{\mybigskip}
-\setlength{\mybigskip}{2ex}
-
-\newcommand{\bigheader}{14pt}
-\newcommand{\littleheader}{12pt}
-\newcommand{\bodysize}{10pt}
-
-\newlength{\mysize}
-\newcommand{\myfontsize}[1]{\setlength{\mysize}{#1}%
-  \fontsize{\mysize}{1.2\mysize}\selectfont}
-
-\newenvironment{itemize*}%
-  {\begin{itemize}%
-    \setlength{\itemsep}{0.5ex}%
-    \setlength{\parskip}{0pt}}%
-  {\end{itemize}}
-
-% \newcommand{\mytilde}{\fontfamily{ptm}\selectfont\texttildelow}
-% \newcommand{\mytilde}{\~{}}
-% \newcommand{\mytilde}{\url{~}}
-% \newcommand{\mytilde}{\char`~}
-% \newcommand{\mytilde}{\~{}}
-
-% 1.5 is too high
-% 0.5 is too low
-% \newcommand{\mytilde}{\raisebox{0.1ex}{\~{}}}
-% \newcommand{\mytilde}{{\raise.25ex\hbox{$\scriptstyle\sim$}}}
 \newcommand{\mytilde}{\nolinkurl{~}}
 
-\setlength\tabcolsep{0pt}
+%%% Semantic markup %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% name, email, phone, location
+\newcommand{\myheader}[4]{%
+  \begin{center}
+    {\sz{21}{24}\bfseries #1\par}
+    \vspace{0.9ex}
+    {\color{muted}\sz{9.5}{11} #2 \; \textbullet \; #3 \; \textbullet \; #4\par}
+  \end{center}
+  \vspace{0.4ex}
+}
+
+% Experience / Projects / Education / ... -- spaced capitals over a rule
+\newcommand{\mysection}[1]{%
+  \needlines{5\baselineskip}%
+  \vspace{2.6ex}%
+  {\sz{10.5}{12}\bfseries\color{accent}\MakeUppercase{#1}}\par
+  \vspace{0.5ex}%
+  {\color{accent}\hrule height \dimexpr0.7pt*\scalepct/100\relax}%
+  \vspace{1.5ex}%
+}
+
+% organisation, location, role, dates
+\newcommand{\myjob}[4]{%
+  \needlines{4.5\baselineskip}%
+  \vspace{1.2ex}%
+  \begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    {\sz{12.5}{14}\bfseries #1} & {\color{muted}\sz{10}{12} #2}\\[0.2ex]
+    {\sz{10.5}{12}\itshape\color{muted} #3} & {\color{muted}\sz{10}{12} #4}\\
+  \end{tabular*}
+  \par\nopagebreak[4]\vspace{0.2ex}%
+}
+
+% a second qualification under the same institution
+\newcommand{\mysubline}[1]{{\sz{10.5}{12}\itshape\color{muted} #1}\par}
+
+% an open-source project heading
+\newcommand{\mysubhead}[1]{%
+  \needlines{3.5\baselineskip}\vspace{1.6ex}{\sz{11}{13}\bfseries #1}\par\vspace{0.3ex}}
+
+% "Thesis:", "Relevant coursework:" lead-ins
+\newcommand{\mylead}[1]{{\bfseries #1}}
+
+% The topic a bullet is about, e.g. \blead{Query service} founding engineer on...
+% Bold so a reader skimming gets the list of capabilities without reading the prose.
+\newcommand{\blead}[1]{\textbf{#1} --- }
+
+\newenvironment{bullets}
+  {\begin{itemize}[topsep=0.7ex, partopsep=0pt, parsep=0pt, itemsep=0.5ex,
+                   leftmargin=1.3em, labelsep=0.55em, labelwidth=0.6em,
+                   label={\color{accent}\textbullet}]}
+  {\end{itemize}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%     Begin Document   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-%\usefont{T1}{DejaVuSans-TLF}{m}{n}
-%\usefont{T1}{phv}{m}{n}
-%\usefont{T1}{tgbonum}{m}{n}
-%\usefont{T1}{cmss}{m}{n}
-%\usefont{T1}{palatino}{m}{n}
-%\usefont{T1}{ugm}{m}{n}
-% \setmainfont{Ubuntu}
-\setmainfont{DejaVuSans}
-\pagestyle {empty}
-\raggedright
+\sz{10}{13}
 \input{mycontents}
 \end{document}

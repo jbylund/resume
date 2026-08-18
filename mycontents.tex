@@ -4,214 +4,145 @@
 
 
 
-\begin{center}
-\myfontsize{\bigheader}
-\textbf{Joe Bylund}\\
-\myfontsize{\bodysize}
-\href{mailto:joseph.bylund+resume@gmail.com}{joseph.bylund@gmail.com}\\
-347-829-5863\\
-Boston, MA\\
-\end{center}
+\myheader{Joe Bylund}{\href{mailto:joseph.bylund+resume@gmail.com}{joseph.bylund@gmail.com}}{347-829-5863}{Boston, MA}
 
-\hrulefill
-\vspace{\littleskip}
+\mysection{Experience}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Klaviyo    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\myfontsize{\bodysize}
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \myfontsize{\bigheader}\textbf{Klaviyo}\myfontsize{\bodysize} & Boston, MA\\
-  Lead Software Engineer & August 2023 --- Present\\
-\end{tabular*}
+\myjob{Klaviyo}{Boston, MA}{Lead Software Engineer}{August 2023 --- Present}
 
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
-    \item Purchase containment filtering - designed a bloom filter architecture replacing repeated large-scale ClickHouse scans, bulk-streaming (person, item) pairs into Redis. Reduced data scanned by {\mytilde}1000x on a path accounting for {\mytilde}1/3 of total ClickHouse cluster load. Sketched the design for a partner team and shepherded them through implementation (ClickHouse, Redis, python).
-    \item Information schema as a service - prototyped a SQL interface over multi-tenant, schema-on-read JSON data, and later rejoined the team that productionized it. Built the manifest service translating user-supplied SQL into queries against JSON-backed tables, giving customers a typed SQL API over untyped storage. Cut manifest resolution latency 3x end to end (python, gRPC, MySQL, StarRocks).
-    \item Query service - founding engineer on a gRPC query service over multi-tenant event data: interceptor stack (rate limiting, validation, concurrency limiting, slow-request logging), sharded connection pooling, executors for ClickHouse, PostgreSQL and MySQL, and query rewriting (python, gRPC, ClickHouse, PostgreSQL, MySQL).
-    \item Metrics service performance - added profiling instrumentation, then optimized query mapping and result processing, reducing latency {\mytilde}58\% across every request the service serves (python, gRPC, ClickHouse).
-    \item Custom objects - built gRPC APIs letting customers define schemas for their own objects, with per-company partitioned rate limiting and a shared Redis Sentinel client, modeled as data vault hubs, links and satellites (python, gRPC, Redis, Pulsar).
-    \item Developer velocity - parallelized test containers, added CI cache targets, and built local development environments used across teams.
-\end{itemize}
-\vspace{\littleskip}
-
-
+\begin{bullets}
+    \item \blead{Purchase containment filtering}designed a bloom filter architecture replacing repeated large-scale ClickHouse scans, bulk-streaming (person, item) pairs into Redis. Reduced data scanned by {\mytilde}1000x on a path accounting for {\mytilde}1/3 of total ClickHouse cluster load. Sketched the design for a partner team and shepherded them through implementation (ClickHouse, Redis, python).
+    \item \blead{Information schema as a service}prototyped a SQL interface over multi-tenant, schema-on-read JSON data, and later rejoined the team that productionized it. Built the manifest service translating user-supplied SQL into queries against JSON-backed tables, giving customers a typed SQL API over untyped storage. Cut manifest resolution latency 3x end to end (python, gRPC, MySQL, StarRocks).
+    \item \blead{Query service}founding engineer on a gRPC query service over multi-tenant event data: interceptor stack (rate limiting, validation, concurrency limiting, slow-request logging), sharded connection pooling, executors for ClickHouse, PostgreSQL and MySQL, and query rewriting (python, gRPC, ClickHouse, PostgreSQL, MySQL).
+    \item \blead{Metrics service performance}added profiling instrumentation, then optimized query mapping and result processing, reducing latency {\mytilde}58\% across every request the service serves (python, gRPC, ClickHouse).
+    \item \blead{Custom objects}built gRPC APIs letting customers define schemas for their own objects, with per-company partitioned rate limiting and a shared Redis Sentinel client, modeled as data vault hubs, links and satellites (python, gRPC, Redis, Pulsar).
+    \item \blead{Developer velocity}parallelized test containers, added CI cache targets, and built local development environments used across teams.
+\end{bullets}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%   Altana    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\myfontsize{\bodysize}
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \myfontsize{\bigheader}\textbf{Altana}\myfontsize{\bodysize} & New York City (Remote)\\
-  Senior Software Engineer & March 2022 --- June 2023\\
-\end{tabular*}
+\myjob{Altana}{New York City (Remote)}{Senior Software Engineer}{March 2022 --- June 2023}
 
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
-    \item Business network discovery and traversal - built tools to construct business networks from graph of world wide shipment data.
-    \item Built search microservice for companies, facilities and transactions using - FastAPI, Pydantic, ArangoDB.
-    \item Arango client library - built http client for ArangoDB supporting synchronous and asynchronous requests used in search microservice.
-    \item Spark client library - shimmed three different client libraries (pyspark, pyhive, databricks-sql-connector) to pep-249 interface, supports creation of business networks.
-    \item Geocoding client - writing api client, measuring and improving accuracy, building pipeline.
-    \item Geocoding pipeline - built continuous address geocoding pipeline and geocoded {\mytilde}400 million addresses.
-\end{itemize}
-\vspace{\littleskip}
-
-
+\begin{bullets}
+    \item \blead{Business network discovery and traversal}built tools to construct business networks from graph of world wide shipment data.
+    \item Built search microservice for companies, facilities and transactions using FastAPI, Pydantic, ArangoDB.
+    \item \blead{Arango client library}built http client for ArangoDB supporting synchronous and asynchronous requests used in search microservice.
+    \item \blead{Spark client library}shimmed three different client libraries (pyspark, pyhive, databricks-sql-connector) to pep-249 interface, supports creation of business networks.
+    \item \blead{Geocoding client}writing api client, measuring and improving accuracy, building pipeline.
+    \item \blead{Geocoding pipeline}built continuous address geocoding pipeline and geocoded {\mytilde}400 million addresses.
+\end{bullets}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%   Kensho    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\myfontsize{\bodysize}
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \myfontsize{\bigheader}\textbf{Kensho}\myfontsize{\bodysize} & Cambridge, MA\\
-  Data Engineer & 2018 --- March 2022\\
-\end{tabular*}
+\myjob{Kensho}{Cambridge, MA}{Data Engineer}{2018 --- March 2022}
 
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
+\begin{bullets}
     \item Designed and implemented multi-step document processing pipeline using multiple in-house ML services.
     \item Designed and built speech-to-text alignment pipeline using SQS \& gentle forced aligner.
     \item Implemented a number of checks in github hooks (pylint, flake8, mypy...), improving the developer experience.
     \item Migrated fuzzy company identification service to kubernetes and optimized performance.
-\end{itemize}
-\vspace{\littleskip}
-
+\end{bullets}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%     Moat    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \myfontsize{\bigheader}\textbf{Moat}\myfontsize{\bodysize} & New York, NY\\
-  Senior Data Scientist \& Back-end Engineer & 2013 --- 2018 \\
-\end{tabular*}
+\myjob{Moat}{New York, NY}{Senior Data Scientist \& Back-end Engineer}{2013 --- 2018}
 
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
+\begin{bullets}
     \item Designed and implemented distributed, fault-tolerant ETL, reducing cost by an order of magnitude, increasing reliability, and reducing processing time from {\mytilde}10 hours to {\mytilde}1 hour, making data available to clients far earlier in the day (using python, SQS, Redis, PostgreSQL).
-    \item Numerous data-driven API improvements which lead to 3-4x improvement in API latency as well as maximum request size (PHP, CakePHP).
+    \item \blead{API performance}cut API latency 3--4x and raised the maximum request size, guided by profiling data (PHP, CakePHP).
     \item Contributed improvements to ORM (CakePHP) and core PHP in order to reduce the number of queries necessary to render a page by 5x (decreasing page load time by {\mytilde}3x) (CakePHP, c).
     \item Standardized deployment framework used to deploy thousands of servers of {\mytilde}30 different roles to AWS (AWS, EC2, boto3).
     \item Migrated primary non-statistical database (users, accounts, metadata) from MySQL to PostgreSQL, improving uptime \& flexibility (MySQL, PostgreSQL, foreign data wrappers).
     \item Migrated primary statistical database (500 million rows/day) from non-first normal form to first normal form schema, improving query latency, reducing storage demands, and increasing throughput.
     \item Architected and implemented sophisticated message routing system which is responsible for moving {\mytilde}40 billion events per day from pixel servers to real-time processing servers while balancing CPU and memory constraints (c++).
     \item Architected and prototyped massively parallel decentralized data lake using AWS lambda and S3 for cost-effective storage and low-latency and cost-effective queries (AWS lambda, python, PostgreSQL).
-\end{itemize}
+\end{bullets}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Projects    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\myfontsize{\bigheader}\textbf{Projects}\myfontsize{\bodysize}
+\mysection{Projects}
 
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
-    \item \href{https://sylvan-librarian.com/}{\textbf{Sylvan Librarian}} (\href{https://github.com/jbylund/sylvan_librarian}{source}) - open source Magic: The Gathering card search engine in rust, implementing Scryfall's query syntax and extending it with arithmetic expressions. Self-hosted with blue/green deploys behind nginx; independently forked and deployed to Cloudflare Workers by an outside contributor. Developed in collaboration with Claude Code (rust, python).
-    \item \href{https://github.com/jbylund/pg_mimic}{\textbf{pg\_mimic}} - pure-python asyncio implementation of the PostgreSQL wire protocol, letting any python process present a postgres interface to standard clients rather than a bespoke http api. Verified against psycopg, asyncpg, pg8000 and psql (python, asyncio).
-\end{itemize}
-\vspace{\littleskip}
-
+\begin{bullets}
+    \item \href{https://sylvan-librarian.com/}{\textbf{Sylvan Librarian}} (\href{https://github.com/jbylund/sylvan_librarian}{source}) --- open source Magic: The Gathering card search engine in rust, implementing Scryfall's query syntax and extending it with arithmetic expressions. Self-hosted with blue/green deploys behind nginx; independently forked and deployed to Cloudflare Workers by an outside contributor (rust, python).
+    \item \href{https://github.com/jbylund/pg_mimic}{\textbf{pg\_mimic}} --- pure-python asyncio implementation of the PostgreSQL wire protocol, letting any python process present a postgres interface to standard clients rather than a bespoke http api. Verified against psycopg, asyncpg, pg8000 and psql (python, asyncio).
+\end{bullets}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Columbia    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\hrulefill
-\vspace{\littleskip}
+\mysection{Education}
 
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \myfontsize{\bigheader}\textbf{Columbia University}\myfontsize{\bodysize} & New York, NY\\
-  PhD - Integrated Program In Cellular, Molecular and Biomedical Studies & 2007 --- 2013\\
-\end{tabular*}
+\myjob{Columbia University}{New York, NY}{PhD -- Integrated Program In Cellular, Molecular and Biomedical Studies}{2007 --- 2013}
 
-Thesis: Monte-Carlo Sampling of Protein-Ligand Interactions and Computational Improvements to Implicit Solvent Models\\
+\mylead{Thesis:} Monte-Carlo Sampling of Protein-Ligand Interactions and Computational Improvements to Implicit Solvent Models\\
 
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
+\begin{bullets}
     \item Led development and maintenance of Protein Local Optimization Program (PLOP) project, a molecular mechanics library for protein structure prediction (fortran).
     \item Designed and implemented the computational mutation scanning module of PLOP.
     \item Redesigned build system to automatically determine dependencies and take advantage of parallel compilation, reducing build time from {\mytilde}30 minutes to {\mytilde}3 minutes and accelerating development.
     \item Created a small molecule database representing 95\%+ of small molecules in the Protein Data Bank, extending PLOP from a protein-only program to a general molecular mechanics toolkit.
     \item Designed and implemented a Perl based automated regression testing framework, which accelerated development while minimizing bugs and regressions.
     \item Created a project wiki, combining scattered documentation and completing missing documentation.
-\end{itemize}
-
-\vspace{\littleskip}
-
+\end{bullets}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Rice    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\clearpage
 
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \myfontsize{\bigheader}\textbf{Rice University}\myfontsize{\bodysize} & Houston, TX\\
-  Bachelor of Arts - Mathematics & 2003 --- 2007, GPA 3.7/4.0 \\
-  Bachelor of Science - Ecology and Evolutionary Biology & \\
-\end{tabular*}
+\myjob{Rice University}{Houston, TX}{Bachelor of Arts -- Mathematics}{2003 --- 2007, GPA 3.7/4.0}
+\mysubline{Bachelor of Science -- Ecology and Evolutionary Biology}
 
-Relevant coursework: Machine Learning, Ordinary and Partial Differential Equations, Real and Complex Analysis, Combinatorics, Number Theory, Mathematical Logic, Modern Algebra, Euclidean and Non-Euclidean Geometry.
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
-    \item Designed and implemented two methods of combining information from multiple proten crystal structures into a single ``composite motif''. These combined motifs increased sensitivity and specificity of motif matching algorithms.
+\mylead{Relevant coursework:} Machine Learning, Ordinary and Partial Differential Equations, Real and Complex Analysis, Combinatorics, Number Theory, Mathematical Logic, Modern Algebra, Euclidean and Non-Euclidean Geometry.
+\begin{bullets}
+    \item Designed and implemented two methods of combining information from multiple protein crystal structures into a single ``composite motif''. These combined motifs increased sensitivity and specificity of motif matching algorithms.
     \item Completed senior thesis project identifying homologous pseudogenes in human and chimpanzee, and determining differential mutation rates.
-\end{itemize}
+\end{bullets}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Open Source   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\hrulefill
-\vspace{\littleskip}
 
-\myfontsize{\bigheader}
-\textbf{Open Source Contributions}
-\myfontsize{\bodysize}\\
+
+\mysection{Open Source Contributions}
 
 % todo, how should this be formatted
 % fix type hints for cachetools https://github.com/python/typeshed/pull/5440
 
-\vspace{\littleskip}
-\vspace{\littleskip}
+\mysubhead{\href{https://github.com/pypa/pip}{Python Package Installer -- Pip}}
 
-\myfontsize{\littleheader}
-\href{https://github.com/pypa/pip}{Python Package Installer - Pip}\\
-\myfontsize{\bodysize}
-
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
+\begin{bullets}
     \item Up to 10x improved performance of package version resolution (\href{https://github.com/pypa/pip/pull/9748}{pull request}).
     \item 2x performance increase in comparison of tag objects (\href{https://github.com/pypa/packaging/pull/417}{pull request}).
-\end{itemize}
+\end{bullets}
 These changes decreased the time spent on pip steps as part of ci process (at Kensho).
 
-\vspace{\littleskip}
-\vspace{\littleskip}
-
-\myfontsize{\littleheader}
-\href{https://github.com/php/php-src}{PHP}\\
-\myfontsize{\bodysize}
+\mysubhead{\href{https://github.com/php/php-src}{PHP}}
 Avoided roundtrip to database in order to get column type for most common datatypes (\href{https://github.com/php/php-src/pull/1534}{pull request}).
 This decreased the number of queries run as well as page load time by more than an order of magnitude in some cases (at Moat).
 
-\vspace{\littleskip}
-\vspace{\littleskip}
-
-\myfontsize{\littleheader}
-\href{https://gitlab.gnome.org/GNOME/shotwell}{Gnome Shotwell Photo Manager}\\
-\myfontsize{\bodysize}
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
-    \item Decreased the number of times raw images were decoded during import process, improving photo import performance.
-    \item Recursively included contained files in the folder browser.
-    \item Added support of panoramic images as event thumbnails.
-    \item Updated searches to search comments and robustly treat accented characters.
-    \item Fixed a number of UI experiences such as adding icons to buttons and windows, and correcting misleading text.
-\end{itemize}
+\mysubhead{\href{https://gitlab.gnome.org/GNOME/shotwell}{Gnome Shotwell Photo Manager}}
+47 commits from 2013 to 2021, across the import pipeline, thumbnail cache, saved searches, publishing plugins and build system (vala).
+\begin{bullets}
+    \item \blead{Import throughput}reworked thumbnail generation to decode each photo once and derive every thumbnail size from that single decode, rather than decoding once per size (\href{https://gitlab.gnome.org/GNOME/shotwell/-/commit/3a424909653f77e1e337ac3e1aad803b49f04942}{commit}).
+    \item \blead{RAW metadata}cached metadata on the RAW reader so a file is parsed once per import instead of on every access (\href{https://gitlab.gnome.org/GNOME/shotwell/-/commit/979f26a1347b39461722e9c9ef15caa6285b6b9f}{commit}).
+\end{bullets}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Other          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{\mybigskip}
-\myfontsize{\littleheader}
-\textbf{Technologies \& Skills}\\
-\myfontsize{\bodysize}
-\begin{itemize}[topsep=1ex, partopsep=0ex, parsep=0ex, itemsep=0.4ex]
-    \item Extensive experience with AWS services and apis (EC2, S3, SQS, dynamodb, kinesis, RDS...)
-    \item Expert in Python and shell
-    \item Some experience with C++ (and previously FORTRAN, vala)
-    \item Relational databases - schema design \& writing / profiling queries - PostgreSQL, MySQL, Vertica, Redshift
-    \item kubernetes, redis, git
-    \item Asynchronous queues \& streaming Kafka, RabbitMQ, SQS
-\end{itemize}
+\mysection{Technologies \& Skills}
+\begin{bullets}
+    \item \blead{Languages}Python, SQL, rust, C++
+    \item \blead{Data stores}ClickHouse, PostgreSQL, MySQL, StarRocks, Redis, ArangoDB; previously Vertica, Redshift
+    \item \blead{Platform}AWS (EC2, S3, RDS, Lambda, DynamoDB), Kubernetes, gRPC; Kafka, Pulsar, SQS, Kinesis, RabbitMQ
+\end{bullets}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Publications    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -221,4 +152,4 @@ This decreased the number of queries run as well as page load time by more than 
 \input{publications}
 \fi
 
-\center{Last updated \monthname, \the\year}
+\begin{center}Last updated \monthname\ \the\year\end{center}
