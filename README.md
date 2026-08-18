@@ -49,8 +49,17 @@ New York, NY · September 2013 - September 2018
 
 # Projects
 
-* **Sylvan Librarian** ([sylvan-librarian.com](https://sylvan-librarian.com/), [source](https://github.com/jbylund/sylvan_librarian)) - open source Magic: The Gathering card search engine in rust, implementing Scryfall's query syntax and extending it with arithmetic expressions. Self-hosted with blue/green deploys behind nginx; independently forked and deployed to Cloudflare Workers by an outside contributor (rust, python).
-* [**pg_mimic**](https://github.com/jbylund/pg_mimic) - pure-python asyncio implementation of the PostgreSQL wire protocol, letting any python process present a postgres interface to standard clients rather than a bespoke http api. Verified against psycopg, asyncpg, pg8000 and psql (python, asyncio).
+### Sylvan Librarian ([sylvan-librarian.com](https://sylvan-librarian.com/), [source](https://github.com/jbylund/sylvan_librarian))
+
+Open source Magic: The Gathering card search engine in rust, implementing Scryfall's query syntax - a query engine with its own parser, cost based planner and execution engine. Self-hosted with blue/green deploys behind nginx; independently forked to Cloudflare Workers by an outside contributor.
+
+* **Cost based plan selection** - replaced a hand-maintained decision tree over four execution plans with a cost model picking the cheapest, fed exact counts (plane popcounts, partition-point widths, posting lengths) rather than cardinality estimates. Chooses the empirically fastest plan on 87 of 88 calibration queries at unchanged throughput: shipped for extensibility, not speed (rust).
+* **In-process query engine** - replaced the PostgreSQL search path with an in-memory rust/PyO3 filter engine over 96k cards, ~76x faster on a geometric mean of representative queries (0.20ms vs 14.9ms), taking the database out of the hot path (rust, PyO3).
+* **Query parser** - hand-rolled a recursive descent parser for the full query language, ~49x faster than the pyparsing grammar it replaced (158k vs 3.2k parses/sec), with a 133 case parity suite asserting both emit identical SQL (python).
+
+### [pg_mimic](https://github.com/jbylund/pg_mimic)
+
+Pure-python asyncio implementation of the PostgreSQL wire protocol, letting any python process present a postgres interface to standard clients rather than a bespoke http api. Verified against psycopg, asyncpg, pg8000 and psql (python, asyncio).
 
 # Open Source Contributions
 
