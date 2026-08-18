@@ -23,9 +23,9 @@ Boston, MA · August 2023 - Present
 New York City (Remote) · March 2022 - June 2023
 
 * **Business network discovery and traversal** - built the tools constructing business networks from a graph of worldwide shipment data (python).
-* **Search service** - built the search microservice for companies, facilities and transactions, and the synchronous and asynchronous ArangoDB http client behind it (python, FastAPI, Pydantic, ArangoDB).
+* **Search service** - built the search microservice for companies, facilities and transactions in Altana's Atlas, and the two libraries under it: a synchronous and asynchronous ArangoDB http client, and a query layer composing logical filters into AQL (python, FastAPI, Pydantic, ArangoDB).
 * **Spark client library** - shimmed three client libraries (pyspark, pyhive, databricks-sql-connector) to one pep-249 interface, so network construction could run against any of them.
-* **Geocoding** - built a continuous address geocoding pipeline and its api client, geocoded ~400 million addresses, and measured and improved match accuracy (python).
+* **Geocoding** - built a continuous pipeline and the client under it — address pre-processing, requests to a Pelias service, and tooling tracking match accuracy over time — geocoding the ~400 million addresses in Altana's Atlas (python, Pelias).
 
 ## Kensho — Software Engineer
 Cambridge, MA · September 2018 - March 2022
@@ -34,7 +34,7 @@ Cambridge, MA · September 2018 - March 2022
 * **PDF extraction performance** - the extractor held pages in a memory-efficient form that the pipeline then mutated heavily. Wrapped the hot path in a conversion to a mutable representation and back, invisible to every caller and with no test changed, cutting the worst documents from 30-60 minutes to 1-2 minutes (python).
 * **Neighbour search** - applied spatial hashing to an element-to-element distance search, comparing only the same and adjacent cells rather than every pair (python).
 * **Speech-to-text alignment** - built the pipeline aligning earnings call transcripts to audio with the gentle forced aligner (python, SQS).
-* **Company identification** - migrated the fuzzy matching service to kubernetes, then profiled and parallelized it for a ~3x speedup (python, kubernetes).
+* **Entity resolution** - migrated the entity resolution service to kubernetes, then profiled and parallelized it for a ~3x speedup (python, kubernetes).
 * **Developer experience** - added pylint, flake8 and mypy checks to github hooks.
 
 ## Moat — Senior Backend Engineer & Data Scientist

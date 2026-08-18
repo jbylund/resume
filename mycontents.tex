@@ -30,9 +30,9 @@
 
 \begin{bullets}
     \item \blead{Business network discovery and traversal}built the tools constructing business networks from a graph of worldwide shipment data (python).
-    \item \blead{Search service}built the search microservice for companies, facilities and transactions, and the synchronous and asynchronous ArangoDB http client behind it (python, FastAPI, Pydantic, ArangoDB).
+    \item \blead{Search service}built the search microservice for companies, facilities and transactions in Altana's Atlas, and the two libraries under it: a synchronous and asynchronous ArangoDB http client, and a query layer composing logical filters into AQL (python, FastAPI, Pydantic, ArangoDB).
     \item \blead{Spark client library}shimmed three client libraries (pyspark, pyhive, databricks-sql-connector) to one pep-249 interface, so network construction could run against any of them.
-    \item \blead{Geocoding}built a continuous address geocoding pipeline and its api client, geocoded {\mytilde}400 million addresses, and measured and improved match accuracy (python).
+    \item \blead{Geocoding}built a continuous pipeline and the client under it --- address pre-processing, requests to a Pelias service, and tooling tracking match accuracy over time --- geocoding the {\mytilde}400 million addresses in Altana's Atlas (python, Pelias).
 \end{bullets}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%   Kensho    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -44,7 +44,7 @@
     \item \blead{PDF extraction performance}the extractor held pages in a memory-efficient form that the pipeline then mutated heavily. Wrapped the hot path in a conversion to a mutable representation and back, invisible to every caller and with no test changed, cutting the worst documents from 30--60 minutes to 1--2 minutes (python).
     \item \blead{Neighbour search}applied spatial hashing to an element-to-element distance search, comparing only the same and adjacent cells rather than every pair (python).
     \item \blead{Speech-to-text alignment}built the pipeline aligning earnings call transcripts to audio with the gentle forced aligner (python, SQS).
-    \item \blead{Company identification}migrated the fuzzy matching service to kubernetes, then profiled and parallelized it for a {\mytilde}3x speedup (python, kubernetes).
+    \item \blead{Entity resolution}migrated the entity resolution service to kubernetes, then profiled and parallelized it for a {\mytilde}3x speedup (python, kubernetes).
     \item \blead{Developer experience}added pylint, flake8 and mypy checks to github hooks.
 \end{bullets}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
