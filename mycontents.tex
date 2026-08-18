@@ -73,6 +73,36 @@
 %%%%%%%    Columbia    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\mysection{Open Source Contributions}
+
+% todo, how should this be formatted
+% fix type hints for cachetools https://github.com/python/typeshed/pull/5440
+
+\mysubhead{\href{https://github.com/pypa/pip}{Python packaging --- pip and packaging}}
+
+\begin{bullets}
+    \item \blead{Candidate selection}replaced a linear scan of the supported tag list with a precomputed index lookup, cutting best-candidate selection 11x in profiling, from 68s to 6.2s over 30 calls (\href{https://github.com/pypa/pip/pull/9748}{pull request}).
+    \item \blead{Tag equality}short-circuited tag comparison on a cached hash. Comparing tags accounted for two thirds of the time spent picking a candidate; it got 2.5x faster and nearly halved the operation overall (\href{https://github.com/pypa/packaging/pull/417}{pull request}).
+\end{bullets}
+Together these cut the time spent on pip steps in ci (at Kensho).
+
+\mysubhead{\href{https://gitlab.gnome.org/GNOME/shotwell}{Gnome Shotwell Photo Manager}}
+47 commits from 2013 to 2021, across the import pipeline, thumbnail cache, saved searches, publishing plugins and build system (vala).
+\begin{bullets}
+    \item \blead{Import throughput}reworked thumbnail generation to decode each photo once and derive every thumbnail size from that single decode, rather than decoding once per size (\href{https://gitlab.gnome.org/GNOME/shotwell/-/commit/3a424909653f77e1e337ac3e1aad803b49f04942}{commit}).
+    \item \blead{RAW metadata}cached metadata on the RAW reader so a file is parsed once per import instead of on every access (\href{https://gitlab.gnome.org/GNOME/shotwell/-/commit/979f26a1347b39461722e9c9ef15caa6285b6b9f}{commit}).
+\end{bullets}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%    Other          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mysubhead{\href{https://github.com/php/php-src}{PHP}}
+Removed a per-column roundtrip to the database in PDO's PostgreSQL driver, resolving the common type OIDs directly instead of querying for each one (\href{https://github.com/php/php-src/commit/e10257ba8069fb982d9cd8681f6633de9fea534d}{commit}).
+Shipped in PHP since 2015; the saving scales with the width of the result set, and at Moat it cut queries and page load time by more than an order of magnitude on the user administration pages.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \mysection{Education}
 
 \myjob{Columbia University}{New York, NY}{PhD -- Integrated Program In Cellular, Molecular and Biomedical Studies}{2007 --- 2013}
@@ -96,36 +126,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%    Open Source   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\mysection{Open Source Contributions}
-
-% todo, how should this be formatted
-% fix type hints for cachetools https://github.com/python/typeshed/pull/5440
-
-\mysubhead{\href{https://github.com/pypa/pip}{Python packaging --- pip and packaging}}
-
-\begin{bullets}
-    \item \blead{Candidate selection}replaced a linear scan of the supported tag list with a precomputed index lookup, cutting best-candidate selection 11x in profiling, from 68s to 6.2s over 30 calls (\href{https://github.com/pypa/pip/pull/9748}{pull request}).
-    \item \blead{Tag equality}short-circuited tag comparison on a cached hash. Comparing tags accounted for two thirds of the time spent picking a candidate; it got 2.5x faster and nearly halved the operation overall (\href{https://github.com/pypa/packaging/pull/417}{pull request}).
-\end{bullets}
-Together these cut the time spent on pip steps in ci (at Kensho).
-
-\mysubhead{\href{https://github.com/php/php-src}{PHP}}
-Removed a per-column roundtrip to the database in PDO's PostgreSQL driver, resolving the common type OIDs directly instead of querying for each one (\href{https://github.com/php/php-src/commit/e10257ba8069fb982d9cd8681f6633de9fea534d}{commit}).
-Shipped in PHP since 2015; the saving scales with the width of the result set, and at Moat it cut queries and page load time by more than an order of magnitude on the user administration pages.
-
-\mysubhead{\href{https://gitlab.gnome.org/GNOME/shotwell}{Gnome Shotwell Photo Manager}}
-47 commits from 2013 to 2021, across the import pipeline, thumbnail cache, saved searches, publishing plugins and build system (vala).
-\begin{bullets}
-    \item \blead{Import throughput}reworked thumbnail generation to decode each photo once and derive every thumbnail size from that single decode, rather than decoding once per size (\href{https://gitlab.gnome.org/GNOME/shotwell/-/commit/3a424909653f77e1e337ac3e1aad803b49f04942}{commit}).
-    \item \blead{RAW metadata}cached metadata on the RAW reader so a file is parsed once per import instead of on every access (\href{https://gitlab.gnome.org/GNOME/shotwell/-/commit/979f26a1347b39461722e9c9ef15caa6285b6b9f}{commit}).
-\end{bullets}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%    Other          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \mysection{Technologies \& Skills}
 \begin{bullets}
