@@ -1,2 +1,5 @@
 *.pdf
 !joseph_bylund.pdf
+
+# fonts/lato/ patched at build time by tools/unalias-hyphen.py
+build/

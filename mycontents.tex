@@ -4,7 +4,9 @@
 
 
 
-\myheader{Joe Bylund}{\href{mailto:joseph.bylund+resume@gmail.com}{joseph.bylund@gmail.com}}{347-829-5863}{Boston, MA}
+\myheader{Joe Bylund}{\href{mailto:joseph.bylund+resume@gmail.com}{joseph.bylund@gmail.com}}{347-829-5863}{Boston, MA}{%
+    \href{https://github.com/jbylund}{github.com/jbylund} \; \textbullet \;
+    \href{https://www.linkedin.com/in/josephbylund/}{linkedin.com/in/josephbylund}}
 
 \mysection{Experience}
 
@@ -37,7 +39,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%   Kensho    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\myjob{Kensho}{Cambridge, MA}{Data Engineer}{2018 --- March 2022}
+\myjob{Kensho}{Cambridge, MA}{Software Engineer}{September 2018 --- March 2022}
 
 \begin{bullets}
     \item Designed and implemented multi-step document processing pipeline using multiple in-house ML services.
@@ -48,7 +50,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%     Moat    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\myjob{Moat}{New York, NY}{Senior Data Scientist \& Back-end Engineer}{2013 --- 2018}
+\myjob{Moat}{New York, NY}{Senior Backend Engineer \& Data Scientist}{September 2013 --- September 2018}
 
 \begin{bullets}
     \item \blead{Distributed ETL}designed and built a fault-tolerant pipeline, cutting cost by an order of magnitude and processing time from {\mytilde}10 hours to {\mytilde}1 hour, so data reached clients far earlier in the day (python, SQS, Redis, PostgreSQL).
@@ -66,7 +68,7 @@
 \mysection{Projects}
 
 \begin{bullets}
-    \item \href{https://sylvan-librarian.com/}{\textbf{Sylvan Librarian}} (\href{https://github.com/jbylund/sylvan_librarian}{source}) --- open source Magic: The Gathering card search engine in rust, implementing Scryfall's query syntax and extending it with arithmetic expressions. Self-hosted with blue/green deploys behind nginx; independently forked and deployed to Cloudflare Workers by an outside contributor (rust, python).
+    \item \textbf{Sylvan Librarian} (\href{https://sylvan-librarian.com/}{sylvan-librarian.com}, \href{https://github.com/jbylund/sylvan_librarian}{source}) --- open source Magic: The Gathering card search engine in rust, implementing Scryfall's query syntax and extending it with arithmetic expressions. Self-hosted with blue/green deploys behind nginx; independently forked and deployed to Cloudflare Workers by an outside contributor (rust, python).
     \item \href{https://github.com/jbylund/pg_mimic}{\textbf{pg\_mimic}} --- pure-python asyncio implementation of the PostgreSQL wire protocol, letting any python process present a postgres interface to standard clients rather than a bespoke http api. Verified against psycopg, asyncpg, pg8000 and psql (python, asyncio).
 \end{bullets}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -76,9 +78,6 @@
 
 \mysection{Open Source Contributions}
 
-% todo, how should this be formatted
-% fix type hints for cachetools https://github.com/python/typeshed/pull/5440
-
 \mysubhead{\href{https://github.com/pypa/pip}{Python packaging --- pip and packaging}}
 
 \begin{bullets}
@@ -86,6 +85,9 @@
     \item \blead{Tag equality}short-circuited tag comparison on a cached hash. Comparing tags accounted for two thirds of the time spent picking a candidate; it got 2.5x faster and nearly halved the operation overall (\href{https://github.com/pypa/packaging/pull/417}{pull request}).
 \end{bullets}
 Together these cut the time spent on pip steps in ci (at Kensho).
+
+\mysubhead{\href{https://github.com/python/typeshed}{Python typeshed}}
+Widened the cachetools stubs, where cache sizes were typed as integers although a custom \mbox{getsizeof} may return any number, so correctly typed code using fractional sizes failed type checking (\href{https://github.com/python/typeshed/pull/5440}{pull request}).
 
 \mysubhead{\href{https://gitlab.gnome.org/GNOME/shotwell}{Gnome Shotwell Photo Manager}}
 47 commits from 2013 to 2021, across the import pipeline, thumbnail cache, saved searches, publishing plugins and build system (vala).
@@ -105,7 +107,7 @@ Shipped in PHP since 2015; the saving scales with the width of the result set, a
 
 \mysection{Education}
 
-\myjob{Columbia University}{New York, NY}{PhD -- Integrated Program In Cellular, Molecular and Biomedical Studies}{2007 --- 2013}
+\myjob{Columbia University}{New York, NY}{PhD -- Computational Chemistry}{2007 --- 2013}
 
 \mylead{Thesis:} Monte-Carlo Sampling of Protein-Ligand Interactions and Computational Improvements to Implicit Solvent Models\\
 

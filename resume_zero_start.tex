@@ -18,12 +18,30 @@
 \usepackage{hyperref}
 
 % Lato: narrower than DejaVu Sans, so it fits more words per line at a given size.
-% Provided by the fonts-lato package (Debian/Ubuntu) or the Lato cask (macOS).
+%
+% Loaded by path from build/fonts/, NOT by system font name. Two reasons:
+%
+%  1. Correct text extraction. Lato's cmap aliases U+00AD and U+2010 onto the
+%     same glyph as U+002D, and XeTeX's Identity-H embedding makes extraction
+%     invert that mapping -- ambiguously, resolving to U+2010. The result is a
+%     PDF with no ASCII hyphens in its text layer at all, so an ATS matches
+%     neither the phone number nor `multi-tenant`. `make` runs
+%     tools/unalias-hyphen.py to strip the two aliases into build/fonts/;
+%     that script's docstring has the full account.
+%  2. Reproducibility. \setmainfont{Lato} resolved by system name, so the text
+%     layer silently depended on whichever Lato the build machine happened to
+%     have. fonts/lato/ pins it; see fonts/README.md.
 %
 % Ligatures=TeX is what turns `---` into an em dash and `` '' into curly quotes.
 % Stated explicitly rather than relying on the font: not every face carries the
 % feature, and without it date ranges print a literal `---`.
-\setmainfont{Lato}[Numbers=Lining, Ligatures=TeX]
+\setmainfont{Lato-Regular.ttf}[
+  Path            = build/fonts/,
+  BoldFont        = Lato-Bold.ttf,
+  ItalicFont      = Lato-Italic.ttf,
+  BoldItalicFont  = Lato-BoldItalic.ttf,
+  Numbers         = Lining,
+  Ligatures       = TeX]
 
 \definecolor{ink}{HTML}{000000}
 % monochrome: give muted/accent their own hex here to reintroduce a second tone
@@ -55,21 +73,25 @@
 % line), so pages fill faster than the percentage suggests. Measured against the
 % current content and section order:
 %
-%   104%  ->  3 pages, last page 74% full, 13 lines spare
-%   106%  ->  3 pages, last page 99% full,  0.3 lines spare
-%   107%  ->  3 pages, last page 91% full,  4.7 lines spare   <-- current setting
-%   108%  ->  spills onto a 4th page
+%   103%  ->  3 pages, last page 79% full
+%   104%  ->  3 pages, last page 86% full   <-- current setting
+%   105%  ->  3 pages, last page 97% full
+%   106%  ->  3 pages, last page 98% full
+%   107%  ->  spills onto a 4th page
 %
-% 107% rather than 106% on purpose: 106% fills the page more but leaves no room to
-% add a line. If content grows and the build fails the page check, drop to 104
+% 104% rather than 105% on purpose: 105 fills the page more but leaves no room to
+% add a line. If content grows and the build fails the page check, drop a point
 % rather than editing individual sizes.
+%
+% Was 107% until the header gained a links line and Open Source gained the
+% typeshed entry, which together cost about three points of scale.
 %
 % These figures are specific to the current section order. When Education sat in
 % the middle of the document the safe range was not even contiguous -- 105, 106 and
 % 109 all spilled while 107 and 108 fit -- because a section that cannot fit its
 % \needlines reservation at the foot of a page pushes everything after it. Re-measure
 % after moving sections around, not just after adding content.
-\newcommand{\scalepct}{107}
+\newcommand{\scalepct}{104}
 \newcommand{\sz}[2]{%
   \fontsize{\the\dimexpr#1pt*\scalepct/100\relax}%
            {\the\dimexpr#2pt*\scalepct/100\relax}\selectfont}
@@ -96,12 +118,19 @@
 
 %%% Semantic markup %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% name, email, phone, location
-\newcommand{\myheader}[4]{%
+% name, email, phone, location, profile links
+%
+% The links sit on their own line rather than extending the contact line: five
+% bullet-separated fields overrun the measure at this size. Their link text is
+% the bare domain, so the destination survives printing and text extraction --
+% every other link in the document hides its URL behind a word.
+\newcommand{\myheader}[5]{%
   \begin{center}
     {\sz{21}{24}\bfseries #1\par}
     \vspace{0.9ex}
     {\color{muted}\sz{9.5}{11} #2 \; \textbullet \; #3 \; \textbullet \; #4\par}
+    \vspace{0.35ex}
+    {\sz{9.5}{11} #5\par}
   \end{center}
   \vspace{0.4ex}
 }

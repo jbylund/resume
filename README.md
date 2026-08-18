@@ -3,6 +3,8 @@
 Lead Software Engineer — Boston, MA
 
 [joseph.bylund@gmail.com](mailto:joseph.bylund+resume@gmail.com?subject=Resume%20from%20Github)
+· [github.com/jbylund](https://github.com/jbylund)
+· [linkedin.com/in/josephbylund](https://www.linkedin.com/in/josephbylund/)
 · [resume (pdf)](https://github.com/jbylund/resume/raw/main/joseph_bylund.pdf)
 
 # Experience
@@ -27,16 +29,16 @@ New York City (Remote) · March 2022 - June 2023
 * **Geocoding client** - writing api client, measuring and improving accuracy, building pipeline.
 * **Geocoding pipeline** - built continuous address geocoding pipeline and geocoded ~400 million addresses.
 
-## Kensho — Data Engineer
-Cambridge, MA · 2018 - March 2022
+## Kensho — Software Engineer
+Cambridge, MA · September 2018 - March 2022
 
 * Designed and implemented multi-step document processing pipeline using multiple in-house ML services.
 * Designed and built speech-to-text alignment pipeline using SQS & gentle forced aligner.
 * Implemented a number of checks in github hooks (pylint, flake8, mypy...), improving the developer experience.
 * Migrated fuzzy company identification service to kubernetes and optimized performance.
 
-## Moat — Senior Data Scientist & Back-end Engineer
-New York, NY · 2013 - 2018
+## Moat — Senior Backend Engineer & Data Scientist
+New York, NY · September 2013 - September 2018
 
 * **Distributed ETL** - designed and built a fault-tolerant pipeline, cutting cost by an order of magnitude and processing time from ~10 hours to ~1 hour, so data reached clients far earlier in the day (python, SQS, Redis, PostgreSQL).
 * **Event routing** - routed ~40 billion events per day from pixel servers into real-time processing, sharding by client, by configurable key and by session, so that one client's traffic could not degrade another's and data arrived pre-aggregated, leaving the ETL far less to merge (c++).
@@ -47,7 +49,7 @@ New York, NY · 2013 - 2018
 
 # Projects
 
-* [**Sylvan Librarian**](https://sylvan-librarian.com/) ([source](https://github.com/jbylund/sylvan_librarian)) - open source Magic: The Gathering card search engine in rust, implementing Scryfall's query syntax and extending it with arithmetic expressions. Self-hosted with blue/green deploys behind nginx; independently forked and deployed to Cloudflare Workers by an outside contributor (rust, python).
+* **Sylvan Librarian** ([sylvan-librarian.com](https://sylvan-librarian.com/), [source](https://github.com/jbylund/sylvan_librarian)) - open source Magic: The Gathering card search engine in rust, implementing Scryfall's query syntax and extending it with arithmetic expressions. Self-hosted with blue/green deploys behind nginx; independently forked and deployed to Cloudflare Workers by an outside contributor (rust, python).
 * [**pg_mimic**](https://github.com/jbylund/pg_mimic) - pure-python asyncio implementation of the PostgreSQL wire protocol, letting any python process present a postgres interface to standard clients rather than a bespoke http api. Verified against psycopg, asyncpg, pg8000 and psql (python, asyncio).
 
 # Open Source Contributions
@@ -58,6 +60,10 @@ New York, NY · 2013 - 2018
 * **Tag equality** - short-circuited tag comparison on a cached hash. Comparing tags accounted for two thirds of the time spent picking a candidate; it got 2.5x faster and nearly halved the operation overall ([pull request](https://github.com/pypa/packaging/pull/417)).
 
 Together these cut the time spent on pip steps in ci (at Kensho).
+
+### [Python typeshed](https://github.com/python/typeshed)
+
+Widened the cachetools stubs, where cache sizes were typed as integers although a custom getsizeof may return any number, so correctly typed code using fractional sizes failed type checking ([pull request](https://github.com/python/typeshed/pull/5440)).
 
 ### [Gnome Shotwell Photo Manager](https://gitlab.gnome.org/GNOME/shotwell)
 
@@ -75,7 +81,7 @@ Removed a per-column roundtrip to the database in PDO's PostgreSQL driver, resol
 ## Columbia University
 New York, NY · 2007 - 2013
 
-PhD - Integrated Program In Cellular, Molecular and Biomedical Studies
+PhD - Computational Chemistry
 
 Thesis: [Monte-Carlo Sampling of Protein-Ligand Interactions and Computational Improvements to Implicit Solvent Models](https://academiccommons.columbia.edu/doi/10.7916/D80G3H7B)
 
