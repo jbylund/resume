@@ -10,25 +10,21 @@
 % Sylvan bullets run strongest-first with the parser last despite being written first. A
 % numbering scheme would encode a rule this document does not follow.
 %
-% Each \input ends in %, commenting out the newline that would otherwise follow it, so the
-% token stream is byte-identical to the single file this replaced. Verified: same build
-% machine, before and after, 1572 words identical in text and position. Dropping the % is
-% probably harmless -- the extra newlines land in vertical mode, where they collapse -- but
-% identical beats probably.
+% publications.tex is still in the repo but nothing inputs it any more. Worth knowing before
+% reaching for it: it dates from 2013 and calls \mybigskip, \myfontsize, \littleheader and
+% \bodysize, none of which survived the restyle -- so reviving it means rewriting it against
+% the current macros, not adding an \input back.
 
-\input{sections/header}%
-\input{sections/experience}%
-\input{sections/projects}%
-\input{sections/open_source}%
-\input{sections/education}%
-\input{sections/skills}%
+\input{sections/header}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%    Publications    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{sections/experience}
 
-\iffalse
-\input{publications}
-\fi
+\input{sections/projects}
+
+\input{sections/open_source}
+
+\input{sections/education}
+
+\input{sections/skills}
 
 \begin{center}Last updated \monthname\ \the\year\end{center}
