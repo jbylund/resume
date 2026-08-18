@@ -5,6 +5,7 @@ Lead Software Engineer — Boston, MA
 [joseph.bylund@gmail.com](mailto:joseph.bylund+resume@gmail.com?subject=Resume%20from%20Github)
 · [github.com/jbylund](https://github.com/jbylund)
 · [linkedin.com/in/josephbylund](https://www.linkedin.com/in/josephbylund/)
+· [jbylund.github.io](https://jbylund.github.io/)
 · [resume (pdf)](https://github.com/jbylund/resume/raw/main/joseph_bylund.pdf)
 
 # Experience
@@ -53,7 +54,7 @@ New York, NY · September 2013 - September 2018
 
 Open source Magic: The Gathering card search engine in rust, implementing Scryfall's query syntax - a query engine with its own parser, cost based planner and execution engine. Self-hosted with blue/green deploys behind nginx; independently forked to Cloudflare Workers by an outside contributor.
 
-* **Cost based query planner** - replaced a hand-maintained decision tree over four execution plans with a cost model picking the cheapest, fed exact counts (plane popcounts, partition-point widths, posting lengths) rather than cardinality estimates. Chooses the empirically fastest plan on 87 of 88 calibration queries at unchanged throughput: shipped for extensibility, not speed (rust, [pull request](https://github.com/jbylund/sylvan_librarian/pull/712)).
+* **Cost based query planner** - plan selection was a hand-maintained decision tree of nested conditions and tuned constants spread through the call graph, so adding a plan meant renegotiating every branch. Replaced it with one cost model over exact counts (plane popcounts, partition-point widths, posting lengths) rather than cardinality estimates: the fastest plan on 87 of 88 calibration queries, throughput unchanged, and plan work tractable afterwards (rust, [pull request](https://github.com/jbylund/sylvan_librarian/pull/712)).
 * **In-process query engine** - replaced the PostgreSQL search path with an in-memory rust/PyO3 filter engine over 96k cards, ~76x faster on a geometric mean of representative queries (0.20ms vs 14.9ms), taking the database out of the hot path (rust, PyO3, [pull request](https://github.com/jbylund/sylvan_librarian/pull/490)).
 * **Query parser** - hand-rolled a recursive descent parser for the full query language, ~49x faster than the pyparsing grammar it replaced (158k vs 3.2k parses/sec), with a 133 case parity suite asserting both emit identical SQL (python, [pull request](https://github.com/jbylund/sylvan_librarian/pull/482)).
 * **Arithmetic expression index** - arbitrary arithmetic over four integer attributes (a+b<k) had no narrowing path and scanned every row. Those attributes take only ~564 distinct combinations across 31.5k rows, so the index evaluates the predicate against the combinations rather than the rows and unions the matching postings - exact, 4.15x geometric mean on affected queries, 135KB of index (rust, [pull request](https://github.com/jbylund/sylvan_librarian/pull/750)).
