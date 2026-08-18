@@ -44,6 +44,16 @@ jobs:
         env:
           APT_OPTS: -o Acquire::Retries=3 -o Dpkg::Use-Pty=0
         run: |
+          # The runners point apt at azure.archive.ubuntu.com. That mirror stalled
+          # on three consecutive runs, each one burning the whole step budget, so
+          # use the canonical archive instead. 24.04 keeps its sources in the
+          # deb822 file; the older path is listed too in case the image changes.
+          sudo sed -i 's|https\?://azure.archive.ubuntu.com/ubuntu|http://archive.ubuntu.com/ubuntu|g' \
+            /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list 2>/dev/null || true
+          echo "apt mirrors in use:"
+          grep -rhoE 'https?://[^ ]*ubuntu[^ ]*' \
+            /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list 2>/dev/null | sort -u | sed 's/^/  /'
+
           sudo apt-get $APT_OPTS update -qq
           # xetex: xelatex, fontspec, geometry, hyperref, xcolor; fonts-lato: the
           # Lato TTFs \setmainfont needs. Everything else (enumitem, datetime,
