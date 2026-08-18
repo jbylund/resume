@@ -3,3 +3,8 @@
 
 # fonts/lato/ patched at build time by tools/unalias-hyphen.py
 build/
+
+# personal Claude Code config -- a PreToolUse hook that pins gh to the jbylund
+# account for this repo. Machine-specific (absolute paths), so not shared.
+.claude/settings.local.*
+.claude/scripts/
