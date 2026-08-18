@@ -1,3 +1,26 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%     Publications -- not part of the document     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Nothing inputs this. It is kept because the citations are worth keeping, not because it is
+% ready to use: reviving it means rewriting the markup, not adding an \input back.
+%
+% Two reasons it will not compile as it stands, both dating from 2013:
+%
+%  1. \mybigskip, \myfontsize, \littleheader and \bodysize are all undefined. They belonged
+%     to the styling this document had before the restyle; the current macros are \mysection,
+%     \mysubhead, \myjob and the bullets environment, in resume_zero_start.tex.
+%  2. The file closes with a bare \fi that has no matching conditional in it.
+%
+% Both went unnoticed for years because the call site was `\iffalse \input{publications} \fi`,
+% and \iffalse skips at the token level -- \input never fired, so this file was never read.
+%
+% The citations themselves are current and correct; it is only the markup around them that is
+% stale. Anything reinstated here also has to earn its space: the document is three pages with
+% the last page 99% full, so see the notes on \scalepct in resume_zero_start.tex first.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \vspace{\mybigskip}
 \vspace{\mybigskip}
 \myfontsize{\littleheader}

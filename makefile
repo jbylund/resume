@@ -10,6 +10,8 @@ TEXCOMMAND := $(shell command -v xelatex)
 export TEXINPUTS := $(CURDIR)/texmf//:
 export TFMFONTS := $(CURDIR)/texmf//:
 VENDORED := $(wildcard texmf/*.sty texmf/*.def texmf/*.tfm)
+# mycontents.tex is a manifest of \input lines; the prose lives in sections/
+SECTIONS := $(wildcard sections/*.tex)
 
 # fonts/lato/ holds Lato as it ships from upstream; the build copies in
 # build/fonts/ have two cmap aliases stripped so the PDF text layer extracts
@@ -45,7 +47,7 @@ $(LATO_STAMP) : $(LATO_SRC) tools/unalias-hyphen.py
 	python3 tools/unalias-hyphen.py fonts/lato build/fonts
 	@touch $@
 
-$(OUTPUTNAME) : $(TEXCOMMAND) $(FDUPES) mycontents.tex resume_zero_start.tex publications.tex makefile $(VENDORED) $(LATO_STAMP)
+$(OUTPUTNAME) : $(TEXCOMMAND) $(FDUPES) mycontents.tex $(SECTIONS) resume_zero_start.tex makefile $(VENDORED) $(LATO_STAMP)
 	@mv -f $(OUTPUTNAME) $(OUTPUTNAME).bak 2>/dev/null || true
 	@echo "Pass 1 of 2..."
 	true | $(TEXCOMMAND) -vv -jobname $(BASENAME) resume_zero_start.tex
