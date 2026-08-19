@@ -1,6 +1,8 @@
 BASENAME := joseph_bylund
-OUTPUTNAME := $(BASENAME).$(DATE).pdf
-OUTPUTNAME := $(BASENAME).pdf
+# One PDF per header variant; the body is shared. Adding a variant means adding a word here
+# and a sections/header_<name>.tex to match.
+VARIANTS := boston dublin
+PDFS := $(foreach v,$(VARIANTS),$(BASENAME).$(v).pdf)
 # command -v rather than type -a: portable to /bin/sh (dash) on CI runners
 TEXCOMMAND := $(shell command -v xelatex)
 
@@ -23,11 +25,9 @@ LATO_SRC := $(wildcard fonts/lato/*.ttf)
 # grouped targets (`&:`) need GNU Make 4.3 while macOS still ships 3.81
 LATO_STAMP := build/fonts/.patched
 
-.PHONY: $(OUTPUTNAME)
+all: $(PDFS)
 
-all: $(OUTPUTNAME)
-
-view : $(OUTPUTNAME)
+view : $(PDFS)
 	@timeout 30 evince $(shell ls -t *.pdf|head -n 1) || true
 
 /usr/share/texlive/texmf-dist/tex/latex/base/article.cls:
@@ -47,17 +47,28 @@ $(LATO_STAMP) : $(LATO_SRC) tools/unalias-hyphen.py
 	python3 tools/unalias-hyphen.py fonts/lato build/fonts
 	@touch $@
 
-$(OUTPUTNAME) : $(TEXCOMMAND) $(FDUPES) mycontents.tex $(SECTIONS) resume_zero_start.tex makefile $(VENDORED) $(LATO_STAMP)
-	@mv -f $(OUTPUTNAME) $(OUTPUTNAME).bak 2>/dev/null || true
-	@echo "Pass 1 of 2..."
-	true | $(TEXCOMMAND) -vv -jobname $(BASENAME) resume_zero_start.tex
-	@echo "Pass 2 of 2..."
-	$(TEXCOMMAND) -jobname $(BASENAME) resume_zero_start.tex > /dev/null
+# $* is the variant name, so one rule builds them all. \headerfile is set on the command
+# line rather than in the source, which keeps the variant out of the committed .tex files.
+$(BASENAME).%.pdf : FORCE $(TEXCOMMAND) $(FDUPES) mycontents.tex $(SECTIONS) resume_zero_start.tex makefile $(VENDORED) $(LATO_STAMP)
+	@mv -f $@ $@.bak 2>/dev/null || true
+	@echo "Building $* -- pass 1 of 2..."
+	true | $(TEXCOMMAND) -jobname $(BASENAME).$* '\def\headerfile{sections/header_$*}\input{resume_zero_start.tex}'
+	@echo "Building $* -- pass 2 of 2..."
+	$(TEXCOMMAND) -jobname $(BASENAME).$* '\def\headerfile{sections/header_$*}\input{resume_zero_start.tex}' > /dev/null
 	@/bin/rm -rf *.log *.aux *.out
-	ls $(OUTPUTNAME)
+	ls $@
 
 clean :
-	@/bin/rm -f $(OUTPUTNAME)
+	@/bin/rm -f $(PDFS)
 	@/bin/rm -rf build
 
-.PHONY : clean view
+.PHONY : clean view FORCE
+
+# Always rebuild, via a FORCE prerequisite rather than .PHONY: make skips implicit-rule search
+# for phony targets, so marking the PDFs phony silently stops the pattern rule above from ever
+# firing -- you get a stale PDF and no error. This matters in CI, where the tracked PDFs are
+# checked out with the same mtime as the sources.
+#
+# Defined last on purpose: the first target in a makefile becomes the default goal, and a FORCE
+# with no recipe sitting at the top makes `make` quietly do nothing.
+FORCE:

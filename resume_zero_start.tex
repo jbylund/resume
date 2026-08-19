@@ -199,6 +199,10 @@
 %%%%%%%     Begin Document   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Which header to use. `make` overrides this per variant on the command line; the default
+% is here so that running xelatex by hand still produces a document.
+\providecommand{\headerfile}{sections/header_boston}
+
 \begin{document}
 \sz{10}{13}
 \input{mycontents}
