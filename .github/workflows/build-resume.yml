@@ -111,26 +111,33 @@ jobs:
           # literal search. tools/unalias-hyphen.py strips the aliases at build time
           # and this guards the outcome, since the failure is invisible on the page.
           python3 - <<'PY'
-          import re, subprocess, sys
+          import glob, re, subprocess, sys
 
-          text = subprocess.run(
-              ["pdftotext", "-layout", "joseph_bylund.pdf", "-"],
-              capture_output=True, text=True, check=True).stdout
+          pdfs = sorted(glob.glob("joseph_bylund.*.pdf"))
+          if not pdfs:
+              sys.exit("::error::no built PDFs found")
 
-          problems = []
-          for cp, name in ((0x2010, "U+2010 HYPHEN"), (0x00AD, "U+00AD SOFT HYPHEN")):
-              if (n := text.count(chr(cp))):
-                  problems.append(f"{n} occurrences of {name}; expected ASCII U+002D")
-          # the specific searches a recruiter or ATS actually runs
-          for pattern in (r"347-829-5863", r"\d{3}-\d{3}-\d{4}", r"multi-tenant"):
-              if not re.search(pattern, text):
-                  problems.append(f"no match for {pattern!r}")
+          failed = False
+          for pdf in pdfs:
+              text = subprocess.run(
+                  ["pdftotext", "-layout", pdf, "-"],
+                  capture_output=True, text=True, check=True).stdout
 
-          for problem in problems:
-              print(f"::error::text layer: {problem}")
-          if problems:
-              sys.exit(1)
-          print(f"text layer OK: {text.count('-')} ASCII hyphens, no U+2010")
+              problems = []
+              for cp, name in ((0x2010, "U+2010 HYPHEN"), (0x00AD, "U+00AD SOFT HYPHEN")):
+                  if (n := text.count(chr(cp))):
+                      problems.append(f"{n} occurrences of {name}; expected ASCII U+002D")
+              # the specific searches a recruiter or ATS actually runs
+              for pattern in (r"347-829-5863", r"\d{3}-\d{3}-\d{4}", r"multi-tenant"):
+                  if not re.search(pattern, text):
+                      problems.append(f"no match for {pattern!r}")
+
+              for problem in problems:
+                  print(f"::error::{pdf}: text layer: {problem}")
+              failed |= bool(problems)
+              if not problems:
+                  print(f"{pdf}: text layer OK, {text.count('-')} ASCII hyphens, no U+2010")
+          sys.exit(1 if failed else 0)
           PY
 
       - name: Check length
@@ -140,38 +147,42 @@ jobs:
           # fourth page. Fail instead, loudly. Fewer pages is fine: pruning content
           # should not need a workflow edit.
           MAX_PAGES=3
-          pages="$(pdfinfo joseph_bylund.pdf | awk '/^Pages:/ {print $2}')"
+          rc=0
+          for pdf in joseph_bylund.*.pdf; do
+            pages="$(pdfinfo "$pdf" | awk '/^Pages:/ {print $2}')"
 
-          # how far down the final page the text reaches, as a percentage of the
-          # text block -- reported so the slack left is visible in the run summary
-          read -r height ymax <<<"$(pdftotext -bbox -f "$pages" -l "$pages" joseph_bylund.pdf - \
-            | awk -F'"' '/<page /{h=$4} /yMax=/{for(i=1;i<=NF;i++) if($i ~ /yMax=/){v=$(i+1)+0; if(v>m) m=v}} END{print h, m}')"
-          fill="$(awk -v y="$ymax" -v h="$height" 'BEGIN{printf "%.0f", (y - 52) / (h - 104) * 100}')"
+            # how far down the final page the text reaches, as a percentage of the
+            # text block -- reported so the slack left is visible in the run summary
+            read -r height ymax <<<"$(pdftotext -bbox -f "$pages" -l "$pages" "$pdf" - \
+              | awk -F'"' '/<page /{h=$4} /yMax=/{for(i=1;i<=NF;i++) if($i ~ /yMax=/){v=$(i+1)+0; if(v>m) m=v}} END{print h, m}')"
+            fill="$(awk -v y="$ymax" -v h="$height" 'BEGIN{printf "%.0f", (y - 52) / (h - 104) * 100}')"
 
-          echo "$pages pages; final page $fill% full" | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "$pdf: $pages pages; final page $fill% full" | tee -a "$GITHUB_STEP_SUMMARY"
 
-          if [ "$pages" -gt "$MAX_PAGES" ]; then
-            echo "::error::Resume is $pages pages, over the $MAX_PAGES-page limit." \
-                 "Either prune content or lower \\scalepct in resume_zero_start.tex."
-            exit 1
-          fi
+            if [ "$pages" -gt "$MAX_PAGES" ]; then
+              echo "::error::$pdf is $pages pages, over the $MAX_PAGES-page limit." \
+                   "Either prune content or lower \\scalepct in resume_zero_start.tex."
+              rc=1
+            fi
+          done
+          exit $rc
 
       - uses: actions/upload-artifact@v4
         with:
           name: joseph_bylund-pdf
-          path: joseph_bylund.pdf
+          path: joseph_bylund.*.pdf
           if-no-files-found: error
 
       - name: Commit rebuilt PDF
         if: github.event_name != 'pull_request'
         run: |
-          if git diff --quiet -- joseph_bylund.pdf; then
-            echo "PDF unchanged, nothing to commit."
+          if git diff --quiet -- 'joseph_bylund.*.pdf'; then
+            echo "PDFs unchanged, nothing to commit."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # -f because .gitignore lists *.pdf, though this one is tracked
-          git add -f joseph_bylund.pdf
-          git commit -m "Rebuild resume PDF from ${GITHUB_SHA::7}"
+          # -f because .gitignore lists *.pdf, though these are tracked
+          git add -f joseph_bylund.*.pdf
+          git commit -m "Rebuild resume PDFs from ${GITHUB_SHA::7}"
           git push || { git pull --rebase && git push; }

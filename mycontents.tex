@@ -5,12 +5,15 @@
 % The prose lives in sections/; this file is only the order. Reorder these lines to
 % reorder the resume.
 %
+% \headerfile picks the header variant, defaulted in resume_zero_start.tex and overridden
+% per build by the makefile. Everything below the header is shared by both variants.
+%
 % Order here is editorial, not chronological, which is why the filenames carry no numeric
 % prefix: Rice sits after Columbia, Sylvan Librarian before the older pg_mimic, and the
 % Sylvan bullets run strongest-first with the parser last despite being written first. A
 % numbering scheme would encode a rule this document does not follow.
 
-\input{sections/header}
+\input{\headerfile}
 
 \input{sections/experience}
 

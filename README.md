@@ -6,7 +6,7 @@ Lead Software Engineer — Boston, MA
 · [github.com/jbylund](https://github.com/jbylund)
 · [linkedin.com/in/josephbylund](https://www.linkedin.com/in/josephbylund/)
 · [jbylund.github.io](https://jbylund.github.io/)
-· [resume (pdf)](https://github.com/jbylund/resume/raw/main/joseph_bylund.pdf)
+· [resume (pdf)](https://github.com/jbylund/resume/raw/main/joseph_bylund.boston.pdf)
 
 # Experience
 
