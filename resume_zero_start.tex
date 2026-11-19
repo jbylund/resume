@@ -110,6 +110,10 @@
 % 109 all spilled while 107 and 108 fit -- because a section that cannot fit its
 % \needlines reservation at the foot of a page pushes everything after it. Re-measure
 % after moving sections around, not just after adding content.
+% 2026-11-18: 96 -> 94 -> 96 after the Pants, SQLGlot and Shotwell import-path entries were added
+% (typeshed, a Pants pair of bullets, a SQLGlot bullet, Columbia regression testing and
+% Kensho developer experience went to held_bullets.tex). The figures above are historical;
+% re-measure the threshold with tools/sweep-scalepct.py.
 \newcommand{\scalepct}{96}
 \newcommand{\sz}[2]{%
   \fontsize{\the\dimexpr#1pt*\scalepct/100\relax}%

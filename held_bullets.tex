@@ -41,3 +41,70 @@
 % described as a text column and rows it reads as the search engineering it is.
 
     \item \blead{Text search prefilter}the last unindexed text column was matched per row --- 52k string comparisons over only 26.3k distinct values --- and could never narrow, so a single such predicate voided OR narrowing for an entire query. Resolved it once against the distinct values behind a 128-bit n-gram signature rejecting 97\% of candidates, then expanded matches back to rows through a CSR inverted index: 15x on a bare predicate and 8x on the OR combination that motivated the work, for {\mytilde}1MB of index against 5--9MB for a trigram alternative (rust, \href{https://github.com/jbylund/sylvan_librarian/pull/622}{pull request}).
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PYTHON TYPESHED -- cachetools stubs (python/typeshed#5440)
+%
+% Why it is held: removed from sections/open_source.tex on 2026-11-18 to make room for the
+% Pants, SQLGlot and Shotwell entries. Nothing in it is wrong. It was the open source
+% section's entry between pip and Shotwell, so paste it back there.
+%
+% \mysubhead{\href{https://github.com/python/typeshed}{Python typeshed}}
+% Widened the cachetools stubs, where cache sizes were typed as integers although a custom \mbox{getsizeof} may return any number, so correctly typed code using fractional sizes failed type checking (\href{https://github.com/python/typeshed/pull/5440}{pull request}).
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PANTS BUILD SYSTEM -- two per-PR bullets (pantsbuild/pants#23689, #23699)
+%
+% Why they are held: removed from sections/open_source.tex on 2026-11-18, leaving the
+% Pants entry as its header sentence alone (the aggregate 118s -> 77s carries it). To use
+% them, paste them back into a \begin{bullets} block under the entry's header sentence.
+%
+% Every figure is checked against the pull request body:
+%   14.5% of wall clock (132.14s -> 113.03s) ........... #23689, "Large private monorepo,
+%                                                         3 pairs, -19.11s (-14.5%)"
+%   8--15% of wall clock ............................... #23699, "between an ~8% and a ~15%
+%                                                         reduction in wall clock time over a
+%                                                         few different repositories"
+%   Not claimed: #23699 was +2.2% (slower) on the Pants repo itself, which has few ancestor
+%   targets, and with import inference off a narrow run got slower (1.18s -> 8.62s synthetic).
+%   Both are in its body. The "many targets" wording below is the qualifier that covers them.
+%
+\begin{comment}
+    \item \blead{Docker inference}looped over every packageable target for every image; two once-per-run indexes cut 14.5\% of wall clock on that repo (\href{https://github.com/pantsbuild/pants/pull/23689}{pull request}).
+    \item \blead{Init and conftest inference}resolved owners for each ancestor of every file; a run-wide owner index saved 8--15\% of wall clock on repositories with many targets (\href{https://github.com/pantsbuild/pants/pull/23699}{pull request}).
+\end{comment}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SQLGLOT -- DISTINCT with ORDER BY (tobymao/sqlglot#8321)
+%
+% Why it is held: removed from sections/open_source.tex on 2026-11-18 for page budget; the
+% subqueries bullet (#8190) is the larger piece of work and stays. Checked against the pull
+% request body: the example query returned [(1,)] before and [(3,)] after, matching duckdb,
+% on a table of a=1,2,3.
+%
+\begin{comment}
+    \item \blead{DISTINCT with ORDER BY}sorted before de-duplicating, so \mbox{\texttt{SELECT DISTINCT a ... ORDER BY a DESC LIMIT 1}} returned the smallest value (\href{https://github.com/tobymao/sqlglot/pull/8321}{pull request}).
+\end{comment}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COLUMBIA -- Regression testing (PLOP, 2007--2013)
+%
+% Why it is held: removed from sections/education.tex on 2026-11-18 for page budget. It is
+% the one Columbia bullet with no figure in it (the other two carry ~30 min to ~3 min and
+% 95%+ of small molecules), and the oldest work on the page. Nothing in it is wrong. Paste
+% it back as the third item of the Columbia \begin{bullets} block.
+%
+\begin{comment}
+    \item \blead{Regression testing}built a Perl based automated test framework, which accelerated development while minimizing bugs and regressions.
+\end{comment}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% KENSHO -- Developer experience
+%
+% Why it is held: removed from sections/experience.tex on 2026-11-18 for page budget, on a
+% reviewer's suggestion that Joe agreed with. It is a tooling-hygiene line with no figure
+% in it. Nothing in it is wrong. Paste it back into the Kensho \begin{bullets} block.
+%
+\begin{comment}
+    \item \blead{Developer experience}added pylint, flake8 and mypy checks to github hooks.
+\end{comment}
