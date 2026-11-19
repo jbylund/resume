@@ -9,3 +9,11 @@ build/
 # account for this repo. Machine-specific (absolute paths), so not shared.
 .claude/settings.local.*
 .claude/scripts/
+
+# scratch reproduction for the pypdf issue -- regenerable from repro/README.md,
+# and not part of building the resume
+repro/
+
+# editor/OS and build backups
+*.bak
+.DS_Store

@@ -13,15 +13,15 @@
 \end{bullets}
 Together these cut the time spent on pip steps in ci (at Kensho).
 
-\mysubhead{\href{https://github.com/python/typeshed}{Python typeshed}}
-Widened the cachetools stubs, where cache sizes were typed as integers although a custom \mbox{getsizeof} may return any number, so correctly typed code using fractional sizes failed type checking (\href{https://github.com/python/typeshed/pull/5440}{pull request}).
+\mysubhead{\href{https://github.com/pantsbuild/pants/pulls?q=is\%3Apr+state\%3Amerged+author\%3Ajbylund}{Pants build system}}
+Moved work that repeated per target, file or image into an index or memo built once per run (rust and python). Together the changes cut a cold \mbox{\texttt{pants peek ::}} on a monorepo of {\mytilde}65.8k targets from 118s to 77s (1.5x).
 
-\mysubhead{\href{https://gitlab.gnome.org/GNOME/shotwell}{Gnome Shotwell Photo Manager}}
-47 commits from 2013 to 2021, across the import pipeline, thumbnail cache, saved searches, publishing plugins and build system (vala).
-\begin{bullets}
-    \item \blead{Import throughput}reworked thumbnail generation to decode each photo once and derive every thumbnail size from that single decode, rather than decoding once per size (\href{https://gitlab.gnome.org/GNOME/shotwell/-/commit/3a424909653f77e1e337ac3e1aad803b49f04942}{commit}).
-    \item \blead{RAW metadata}cached metadata on the RAW reader so a file is parsed once per import instead of on every access (\href{https://gitlab.gnome.org/GNOME/shotwell/-/commit/979f26a1347b39461722e9c9ef15caa6285b6b9f}{commit}).
-\end{bullets}
+\mysubhead{\href{https://github.com/tobymao/sqlglot/pulls?q=is\%3Apr+state\%3Amerged+author\%3Ajbylund}{SQLGlot}}
+Correctness fixes to the python SQL executor and optimizer, checked against duckdb, postgres, mysql and sqlite. Most notably, a subquery in a predicate or projection put SQL text into the generated python and failed with a syntax error; such subqueries are now planned once and run per outer row (\href{https://github.com/tobymao/sqlglot/pull/8190}{pull request}).
+
+\mysubhead{\href{https://github.com/GNOME/shotwell/commits?author=jbylund}{Gnome Shotwell Photo Manager}}
+Contributions from 2013 to 2026, across the import pipeline, thumbnail cache, saved searches, publishing plugins and build system (vala).
+Recent work removes decoding the photo import repeated or threw away: each photo is decoded once for all its thumbnail sizes, and full-size JPEG decodes that were only read for their dimensions, or then discarded, are skipped, which took importing a test corpus of images from 21.5s to 13.3s (1.6x).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
